@@ -6,63 +6,36 @@ android:layout_height="match_parent"
 android:paddingTop="80dp"
 android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:textStyle="bold"
-        android:text="LOGIN"
-        android:textSize="40sp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:layout_width="250dp"
-        android:id="@+id/inputLoginEmail"
-        android:layout_gravity="center"
-        android:hint="Enter your Email Address"
-        android:layout_height="40dp"
-        android:inputType="textEmailAddress"
-        android:layout_margin="10dp"/>
 
-    <EditText
-        android:layout_width="250dp"
-        android:id="@+id/inputLoginPassword"
-        android:layout_gravity="center"
-        android:hint="Enter your Password"
-        android:inputType="textPassword"
-        android:layout_height="40dp"
-        android:layout_margin="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:text="How do you want to Register or Login"/>
 
     <Button
-        android:id="@+id/loginButton"
-        android:layout_width="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:text="Login"
-        android:textStyle="italic"
-        app:backgroundTint="#2196F3" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#FF9800"
+        android:id="@+id/mainCustomer"
+        android:text="As a Customer"
+        android:textSize="20dp"
+        app:iconTint="@color/black" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="New User?"
-            android:textSize="18sp"
-            android:layout_marginLeft="100dp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="SignUp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/loginSignup"
-            android:textColor="@color/purple_500"/>
-    </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/mainOwner"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#FF9800"
+        android:textSize="20dp"
+        android:text="Owner of Restaurant" />
+    
 
 
 </LinearLayout>
