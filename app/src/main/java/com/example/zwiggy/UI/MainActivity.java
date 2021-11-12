@@ -1,9 +1,11 @@
-package com.example.zwiggy;
+package com.example.zwiggy.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import com.example.zwiggy.R;
 
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -14,6 +16,7 @@ import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
