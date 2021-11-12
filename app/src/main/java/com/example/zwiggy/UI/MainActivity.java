@@ -21,6 +21,7 @@ import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.Credentials;
 import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             UserDetail.setType(1);
             getToLogin();
-
         }
     };
 
