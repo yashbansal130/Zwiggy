@@ -42,9 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         loginSignup.setOnClickListener(LoginSignupClick);
         loginButton.setOnClickListener(LoginButtonClick);
 
-        app = new App(new AppConfiguration.Builder(appID)
-                .build());
-//
+        app = new App(new AppConfiguration.Builder(appID).build());
     }
     View.OnClickListener LoginSignupClick = new View.OnClickListener() {
         @Override
@@ -65,6 +63,10 @@ public class LoginActivity extends AppCompatActivity {
                 Credentials emailPasswordCredentials = Credentials.emailPassword(email, password);
                 app.loginAsync(emailPasswordCredentials, it -> {
                     if (it.isSuccess()) {
+                        UserDetail.setUser(app.currentUser());
+                        UserDetail.setEmailId(email);
+                        UserDetail.setmUid(app.currentUser().getId());
+                        Log.i("id", app.currentUser().getId());
                         Log.i("EXAMPLE", "Successfully Logged In user.");
                         Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                         if(UserDetail.getType()==0){
