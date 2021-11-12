@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zwiggy.Data.UserDetail;
+import com.example.zwiggy.Data.addUser;
 import com.example.zwiggy.R;
 
 import io.realm.mongodb.App;
@@ -67,6 +68,8 @@ public class SignupActivity extends AppCompatActivity {
     View.OnClickListener signUpToLoginClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(intent);
             finish();
         }
     };
@@ -80,6 +83,7 @@ public class SignupActivity extends AppCompatActivity {
                 UserDetail.setEmailId(email);
                 UserDetail.setmUid(app.currentUser().getId());
                 Log.i("EXAMPLE", "Successfully Logged In user.");
+                addUser.setMongo();
                 Toast.makeText(SignupActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                 if(UserDetail.getType()==0){
                     Intent intent = new Intent(SignupActivity.this, CustomerActivity.class);
