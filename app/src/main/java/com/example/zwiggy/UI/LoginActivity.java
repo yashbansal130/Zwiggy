@@ -50,9 +50,13 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
+            finish();
+
+
 
         }
     };
+
 
     View.OnClickListener LoginButtonClick = new View.OnClickListener() {
         @Override
@@ -72,9 +76,11 @@ public class LoginActivity extends AppCompatActivity {
                         if(UserDetail.getType()==0){
                             Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
                             startActivity(intent);
+                            finish();
                         }else{
                             Intent intent = new Intent(LoginActivity.this, OwnerActivity.class);
                             startActivity(intent);
+                            finish();
                         }
                     } else {
                         Log.e("EXAMPLE", "Failed to Login user: " + it.getError().getErrorMessage());
