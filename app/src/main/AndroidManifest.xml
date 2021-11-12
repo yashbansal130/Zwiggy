@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zwiggy">
         <activity
+            android:name=".UI.OwnerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.CustomerActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI.SignupActivity"
             android:exported="true" />
         <activity
