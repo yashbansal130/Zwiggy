@@ -50,9 +50,13 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
+            finish();
+
+
 
         }
     };
+
 
     View.OnClickListener LoginButtonClick = new View.OnClickListener() {
         @Override
