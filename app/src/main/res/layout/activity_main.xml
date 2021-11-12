@@ -5,9 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:paddingTop="80dp"
 android:orientation="vertical">
->>>>>>> 9a1c1426cd79e5db14b8a2c037e92d44c378849b
-
-    <TextView
+ <TextView
         android:layout_width="match_parent"
         android:textStyle="bold"
         android:text="LOGIN"
