@@ -29,5 +29,6 @@ public class SignupActivity extends AppCompatActivity {
 
 //        signUpToLogin.setOnClickListener(signUpToLoginClick);
 //        signUpButton.setOnClickListener(signUpButtonClick);
+
     }
 }
