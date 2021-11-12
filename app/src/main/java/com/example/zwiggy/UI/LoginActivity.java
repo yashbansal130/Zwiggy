@@ -27,8 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView loginSignup;
     App app;
     String appID = "hackit-qyzey";
-    String email = "test@gmail.com";
-    String password = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,23 +59,27 @@ public class LoginActivity extends AppCompatActivity {
     View.OnClickListener LoginButtonClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            Credentials emailPasswordCredentials = Credentials.emailPassword(email, password);
-            app.loginAsync(emailPasswordCredentials, it -> {
-                if (it.isSuccess()) {
-                    Log.i("EXAMPLE", "Successfully registered user.");
-                    Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
-                    if(UserDetail.getType()==0){
-                        Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
-                        startActivity(intent);
-                    }else{
-                        Intent intent = new Intent(LoginActivity.this, OwnerActivity.class);
-                        startActivity(intent);
+            String email = editLoginEmail.getText().toString();
+            String password = editLoginPassword.getText().toString();
+            if(email!=null && password!=null){
+                Credentials emailPasswordCredentials = Credentials.emailPassword(email, password);
+                app.loginAsync(emailPasswordCredentials, it -> {
+                    if (it.isSuccess()) {
+                        Log.i("EXAMPLE", "Successfully Logged In user.");
+                        Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
+                        if(UserDetail.getType()==0){
+                            Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
+                            startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(LoginActivity.this, OwnerActivity.class);
+                            startActivity(intent);
+                        }
+                    } else {
+                        Log.e("EXAMPLE", "Failed to Login user: " + it.getError().getErrorMessage());
+                        Toast.makeText(LoginActivity.this,"Login Failed, Try Again", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    Log.e("EXAMPLE", "Failed to register user: " + it.getError().getErrorMessage());
-                    Toast.makeText(LoginActivity.this,"Login Failed, Try Again", Toast.LENGTH_SHORT).show();
-                }
-            });
+                });
+            }
         }
     };
 }
