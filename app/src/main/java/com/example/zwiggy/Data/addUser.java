@@ -16,7 +16,6 @@ import io.realm.mongodb.mongo.MongoDatabase;
 public class addUser {
 
     public static void setMongo(){
-        Log.i("hellllllllllllllllllllllllllll","hhhhhhhhhhhhhhhh");
         MongoClient mongoClient;
         MongoDatabase mongoDatabase;
         MongoCollection<Document> mongoCollection;
