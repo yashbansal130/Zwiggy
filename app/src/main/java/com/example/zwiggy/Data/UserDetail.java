@@ -7,6 +7,7 @@ public class UserDetail {
     private static String emailId;
     private static int mtype;
     private static String muid;
+    private static String mname;
 
     public static String getUid() {
         return muid;
@@ -33,5 +34,11 @@ public class UserDetail {
     }
     public static User getUser() {
         return muser;
+    }
+    public static String getName(){
+        return mname;
+    }
+    public static void setName(String name){
+        mname=name;
     }
 }
