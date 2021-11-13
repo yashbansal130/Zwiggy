@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_ownerMenu.xml" value="0.3166496424923391" />
         <entry key="app/src/main/res/layout/fragment_ownermenu.xml" value="0.24166666666666667" />
         <entry key="app/src/main/res/layout/fragment_pendingorders.xml" value="0.3166496424923391" />
+        <entry key="app/src/main/res/layout/ownermenu_list_item.xml" value="0.3166496424923391" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.3166496424923391" />
       </map>
     </option>

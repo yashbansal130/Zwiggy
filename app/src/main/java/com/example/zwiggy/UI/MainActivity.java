@@ -38,12 +38,6 @@ public class MainActivity extends AppCompatActivity {
         mainOwner.setOnClickListener(mainOwnerClick);
         mainCustomer.setOnClickListener(mainCustomerClick);
 
-
-
-
-
-
-
     }
     View.OnClickListener mainOwnerClick = new View.OnClickListener() {
         @Override

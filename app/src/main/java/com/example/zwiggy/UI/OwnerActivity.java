@@ -2,7 +2,7 @@ package com.example.zwiggy.UI;
 
 import android.os.Bundle;
 
-import com.example.zwiggy.databinding.ActivityOwner2Binding;
+import com.example.zwiggy.databinding.ActivityOwnerBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,18 +15,16 @@ import com.example.zwiggy.R;
 
 public class OwnerActivity extends AppCompatActivity {
 
-    private ActivityOwner2Binding binding;
+    private ActivityOwnerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityOwner2Binding.inflate(getLayoutInflater());
+        binding = ActivityOwnerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_pendingorders, R.id.navigation_ownermenu, R.id.navigation_acceptedorders)
                 .build();
