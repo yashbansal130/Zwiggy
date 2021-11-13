@@ -14,5 +14,4 @@ public class CustomerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
     }
-
 }
