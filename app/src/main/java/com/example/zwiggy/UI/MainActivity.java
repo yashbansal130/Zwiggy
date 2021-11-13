@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
 
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.realm.Realm;
@@ -36,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         mainOwner = findViewById(R.id.mainOwner);
         mainOwner.setOnClickListener(mainOwnerClick);
         mainCustomer.setOnClickListener(mainCustomerClick);
+
+
+
+
+
+
+
     }
     View.OnClickListener mainOwnerClick = new View.OnClickListener() {
         @Override
