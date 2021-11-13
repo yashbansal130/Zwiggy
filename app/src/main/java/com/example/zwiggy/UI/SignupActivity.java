@@ -41,6 +41,7 @@ public class SignupActivity extends AppCompatActivity {
         signUpButton = findViewById(R.id.signUpButton);
         signUpToLogin = findViewById(R.id.signUpToLogin);
 
+
        signUpToLogin.setOnClickListener(signUpToLoginClick);
        signUpButton.setOnClickListener(signUpButtonClick);
        progressBar = findViewById(R.id.progressSignup);
@@ -105,5 +106,6 @@ public class SignupActivity extends AppCompatActivity {
                 Toast.makeText(SignupActivity.this,"Login Failed, Try Again", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }
