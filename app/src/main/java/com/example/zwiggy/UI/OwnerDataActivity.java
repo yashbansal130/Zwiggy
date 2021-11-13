@@ -15,7 +15,6 @@ public class OwnerDataActivity extends AppCompatActivity {
     EditText editRestaurantName;
     EditText editLocation;
     EditText editMinAmtPerOrder;
-
     Button button;
 
     @Override

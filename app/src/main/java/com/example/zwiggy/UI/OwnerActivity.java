@@ -24,6 +24,8 @@ public class OwnerActivity extends AppCompatActivity {
         binding = ActivityOwnerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_pendingorders, R.id.navigation_ownermenu, R.id.navigation_acceptedorders)

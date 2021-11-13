@@ -17,12 +17,11 @@ import java.util.ArrayList;
 
 public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.OwnerMenuViewHolder> {
     Context mContext;
-    ArrayList<String> mRestaurants;
+    ArrayList<String> mMenuItems;
 
-    public OwnerMenuAdapter(Context context, ArrayList<String> restaurants) {
+    public OwnerMenuAdapter(Context context, ArrayList<String> menuItems) {
         mContext = context;
-        mRestaurants = restaurants;
-        Log.i("data",mRestaurants.toString());
+        mMenuItems = menuItems;
     }
     @NonNull
     @Override
@@ -31,14 +30,14 @@ public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.Owne
         LayoutInflater inflater = LayoutInflater.from(context);
         View contactView = inflater.inflate(R.layout.ownermenu_list_item, parent, false);
         OwnerMenuAdapter.OwnerMenuViewHolder viewHolder = new OwnerMenuViewHolder(contactView);
-        Log.i("data", mRestaurants.toString());
+        Log.i("data", mMenuItems.toString());
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull OwnerMenuViewHolder holder, int position) {
-        String name = mRestaurants.get(position);
-        TextView textView = holder.restaurantName;
+        String name = mMenuItems.get(position);
+        TextView textView = holder.itemName;
         textView.setText(name);
     }
 
@@ -46,16 +45,16 @@ public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.Owne
 
     @Override
     public int getItemCount() {
-      return mRestaurants.size();
+      return mMenuItems.size();
     }
 
     public class OwnerMenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView restaurantName;
+        public TextView itemName;
 
         public OwnerMenuViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            restaurantName = itemView.findViewById(R.id.owner_menu_restaurant_name);
+            itemName = itemView.findViewById(R.id.owner_menu_item_name);
         }
 
         @Override
