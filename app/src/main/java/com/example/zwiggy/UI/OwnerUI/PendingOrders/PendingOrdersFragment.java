@@ -11,7 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.zwiggy.Adapter.ContactsAdapter;
+import com.example.zwiggy.R;
 import com.example.zwiggy.databinding.FragmentPendingordersBinding;
+
+import java.util.ArrayList;
 
 public class PendingOrdersFragment extends Fragment {
 
@@ -32,6 +39,33 @@ public class PendingOrdersFragment extends Fragment {
 
             }
         });
+
+        setContentView(R.layout.fragment_pendingorders);
+
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list_item_PendingOrders);
+
+        // Initialize contacts
+        contacts = Contact.createContactsList(20);
+        // Create adapter passing in the sample user data
+        ContactsAdapter adapter = new ContactsAdapter(contacts);
+        // Attach the adapter to the recyclerview to populate items
+        rvContacts.setAdapter(adapter);
+        // Set layout manager to position the items
+        rvContacts.setLayoutManager(new LinearLayoutManager(this));
+        // That's all!
+
+
+        final ArrayList<String> pendings = new ArrayList<String>();
+        pendings.add("paneer");
+        pendings.add("maggie");
+        pendings.add("chicken");
+        pendings.add("dal makhani");
+        pendings.add("yogi ka korma");
+        pendings.add("bansal ka achaar");
+        pendings.add("mittal ka halwa");
+
+
         return root;
     }
 
