@@ -33,7 +33,7 @@
         android:id="@+id/ownerMinAmountPerOrder"
         android:layout_gravity="center"
         android:hint="Enter the minimum amount per bill"
-        android:inputType="textPassword"
+        android:inputType="number"
         android:layout_height="40dp"
         android:layout_margin="10dp"/>
 
