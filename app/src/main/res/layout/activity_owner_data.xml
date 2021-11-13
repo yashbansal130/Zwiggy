@@ -13,8 +13,7 @@
         android:layout_width="250dp"
         android:id="@+id/ownerRestaurantName"
         android:layout_gravity="center"
-        android:hint="Enter your restaurant's name"
-        android:inputType="textPassword"
+        android:hint="Enter your Restaurant's name"
         android:layout_height="40dp"
         android:layout_margin="10dp"/>
 
@@ -22,8 +21,7 @@
         android:layout_width="250dp"
         android:id="@+id/ownerRestaurantLocation"
         android:layout_gravity="center"
-        android:hint="Enter your Location"
-        android:inputType="textPassword"
+        android:hint="Enter Restaurant's Address"
         android:layout_height="40dp"
         android:layout_margin="10dp"/>
 
