@@ -15,11 +15,4 @@ public class CustomerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_customer);
     }
 
-    @Override
-    public void onBackPressed() {
-        Log.i("hello", "ho");
-        System.exit(1);
-        finish();
-        super.onBackPressed();
-    }
 }

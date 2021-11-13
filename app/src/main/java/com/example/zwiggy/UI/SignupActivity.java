@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class SignupActivity extends AppCompatActivity {
     App app;
     String appID = "hackit-qyzey";
     String name, email, password;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class SignupActivity extends AppCompatActivity {
 
        signUpToLogin.setOnClickListener(signUpToLoginClick);
        signUpButton.setOnClickListener(signUpButtonClick);
+       progressBar = findViewById(R.id.progressSignup);
+       progressBar.setVisibility(View.GONE);
 
         app = new App(new AppConfiguration.Builder(appID)
                 .build());
@@ -53,12 +57,14 @@ public class SignupActivity extends AppCompatActivity {
            password=editSignUpPassword.getText().toString();
             name=editSignUpName.getText().toString();
             if(email!=null && password!=null && name!=null) {
+                progressBar.setVisibility(View.VISIBLE);
                 app.getEmailPassword().registerUserAsync(email, password, it -> {
                     if (it.isSuccess()) {
                         Log.i("EXAMPLE", "Successfully registered user.");
                         loginUser();
                     } else {
                         Log.e("EXAMPLE", "Failed to register user: " + it.getError().getErrorMessage());
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
             }
@@ -94,6 +100,7 @@ public class SignupActivity extends AppCompatActivity {
                     finish();
                 }
             } else {
+                progressBar.setVisibility(View.GONE);
                 Log.e("EXAMPLE", "Failed to Login user: " + it.getError().getErrorMessage());
                 Toast.makeText(SignupActivity.this,"Login Failed, Try Again", Toast.LENGTH_SHORT).show();
             }
