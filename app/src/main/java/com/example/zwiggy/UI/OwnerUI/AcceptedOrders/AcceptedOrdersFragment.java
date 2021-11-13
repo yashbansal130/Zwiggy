@@ -49,7 +49,7 @@ public class AcceptedOrdersFragment extends Fragment {
         acceptedOrders.add("Utkarsh1 chutiya");
         acceptedOrders.add("Mota1 Bhadwa");
 
-        rvAcceptedOrders = root.findViewById(R.id.rvPendingOrders);
+        rvAcceptedOrders = root.findViewById(R.id.rvAcceptedOrders);
         PendingOrderAdapter adapter = new PendingOrderAdapter(getContext(), acceptedOrders);
         rvAcceptedOrders.setAdapter(adapter);
         rvAcceptedOrders.setLayoutManager(new LinearLayoutManager(getContext()));
