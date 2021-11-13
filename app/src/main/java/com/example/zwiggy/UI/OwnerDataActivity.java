@@ -15,6 +15,7 @@ import android.widget.EditText;
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.bson.Document;
 
@@ -42,7 +43,7 @@ public class OwnerDataActivity extends AppCompatActivity {
     String LOG_TAG = OwnerDataActivity.class.getSimpleName();
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
-    String OwnerID,latitude="lati",longitude="longi";
+    String OwnerID;
     Document res;
     MongoCollection<Document> mongoCollectionUser,mongoCollectionOwner;
     @Override

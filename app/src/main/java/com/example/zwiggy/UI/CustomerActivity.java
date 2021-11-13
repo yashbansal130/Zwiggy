@@ -19,6 +19,8 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.zwiggy.Adapter.CustomerAdapter;
+import com.example.zwiggy.Adapter.PendingOrderAdapter;
 import com.example.zwiggy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -34,6 +36,8 @@ public class CustomerActivity extends AppCompatActivity {
 
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
+    ArrayList<String> restaurants;
+    RecyclerView rvRestaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,15 @@ public class CustomerActivity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
         getDistance(0,0,0,0);
+        restaurants = new ArrayList<String>();
+        restaurants.add("Amar Punjabi");
+        restaurants.add("roma.in");
+        restaurants.add("satkar");
+
+        rvRestaurants = findViewById(R.id.rvCustomer);
+        CustomerAdapter adapter = new CustomerAdapter(this, restaurants);
+        rvRestaurants.setAdapter(adapter);
+        rvRestaurants.setLayoutManager(new LinearLayoutManager(this));
     }
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
