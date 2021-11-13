@@ -3,6 +3,7 @@ package com.example.zwiggy.UI.OwnerUI.OwnerMenu;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -25,6 +26,13 @@ public class AddMenuItemActivity extends AppCompatActivity {
         editMenuItemDiscription = findViewById(R.id.menuItemDiscription);
 
         proceedFromMenu = findViewById(R.id.menuDone);
+        proceedFromMenu.setOnClickListener(proceedFromMenuClick);
 
     }
+    View.OnClickListener proceedFromMenuClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            finish();
+        }
+    };
 }

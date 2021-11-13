@@ -37,7 +37,6 @@ public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.Owne
     @Override
     public void onBindViewHolder(@NonNull OwnerMenuViewHolder holder, int position) {
          MenuItem item = mMenuItems.get(position);
-         //Log.i("data", item.getDisc());
         TextView name = holder.itemName;
         name.setText(item.getName());
         holder.itemPrice.setText("Rs "+Integer.toString(item.getPrice()));

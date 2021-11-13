@@ -3,6 +3,7 @@ package com.example.zwiggy.UI.OwnerUI.OwnerMenu;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import android.app.Service;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,12 +52,16 @@ public class OwnerMenuFragment extends Fragment {
         menuItems.add(new MenuItem("Kadai Paneer", 230, "Spicy as Hell"));
         menuItems.add(new MenuItem("Malai Kofta", 225, "Sweet And Soft"));
 
+        for(int i=0;i<3;i++){
+            Log.i("info", menuItems.get(i).getDisc());
+        }
+
         FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.add_menu_item_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getContext(), AddMenuItemActivity.class);
+                startActivity(intent);
             }
         });
 

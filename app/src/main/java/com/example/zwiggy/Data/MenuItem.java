@@ -3,11 +3,11 @@ package com.example.zwiggy.Data;
 public class MenuItem {
     private String name;
     private int price;
-    String disc;
+    private String disc;
 
 
 
-    public MenuItem(String name, int price, String dics){
+    public MenuItem(String name, int price, String disc){
         this.name = name;
         this.price = price;
         this.disc = disc;
