@@ -18,13 +18,6 @@ import android.widget.Toast;
 
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.Task;
 
 import io.realm.Realm;
 import io.realm.mongodb.App;
@@ -41,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     App app;
     String appID = "hackit-qyzey";
     ProgressBar progressBar;
-    SignInButton loginGoogle;
+//    SignInButton loginGoogle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         loginSignup.setOnClickListener(LoginSignupClick);
         loginButton.setOnClickListener(LoginButtonClick);
         progressBar = findViewById(R.id.progressLogin);
-        loginGoogle = findViewById(R.id.loginGoogle);
-        loginGoogle.setOnClickListener(loginGoogleClick);
+//        loginGoogle = findViewById(R.id.loginGoogle);
+//        loginGoogle.setOnClickListener(loginGoogleClick);
 
         app = new App(new AppConfiguration.Builder(appID).build());
         progressBar.setVisibility(View.GONE);
