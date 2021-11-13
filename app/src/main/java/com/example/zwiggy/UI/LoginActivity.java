@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zwiggy.Data.UserDetail;
+import com.example.zwiggy.Data.setUserId;
 import com.example.zwiggy.R;
 
 import io.realm.Realm;
@@ -83,8 +84,12 @@ public class LoginActivity extends AppCompatActivity {
                         UserDetail.setUser(app.currentUser());
                         UserDetail.setEmailId(email);
                         UserDetail.setmUid(app.currentUser().getId());
+
                         Log.i("id", app.currentUser().getId());
                         Log.i("EXAMPLE", "Successfully Logged In user.");
+
+                        setUserId.setuserid();
+
                         Toast.makeText(LoginActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                         if(UserDetail.getType()==0){
                             Intent intent = new Intent(LoginActivity.this, CustomerActivity.class);
