@@ -64,8 +64,7 @@ public class OwnerDataActivity extends AppCompatActivity {
                 Location=editLocation.getText().toString();
                 MinAmnt= Integer.parseInt(editMinAmtPerOrder.getText().toString());
                 findOwnerDetails();
-                Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -96,6 +95,8 @@ public class OwnerDataActivity extends AppCompatActivity {
                 .append("MinAmnt", MinAmnt)).getAsync(result -> {
             if (result.isSuccess()) {
                 Log.v(LOG_TAG, "owner Insertion is successful");
+                Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
+                startActivity(intent);
 
             } else {
                 Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());

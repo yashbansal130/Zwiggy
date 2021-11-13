@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -23,12 +24,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zwiggy.Adapter.OwnerMenuAdapter;
 import com.example.zwiggy.Data.MenuItem;
+import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
+import com.example.zwiggy.UI.OwnerDataActivity;
 import com.example.zwiggy.databinding.FragmentOwnermenuBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.bson.Document;
+
 import java.util.ArrayList;
+
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
 
 public class OwnerMenuFragment extends Fragment {
 
@@ -38,14 +50,34 @@ public class OwnerMenuFragment extends Fragment {
     ArrayList<MenuItem> menuItems;
     EditText minAmountEdit;
     ImageView minAmountButton;
-
+    String Restaurant,Location;
+    int MinAmnt;
+    App app;
+    User user;
+    String appID = "hackit-qyzey",OwnerID;
+    String LOG_TAG = OwnerMenuFragment.class.getSimpleName();
+    MongoClient mongoClient;
+    MongoDatabase mongoDatabase;
+    MongoCollection<Document> mongoCollectionOwner;
+    Document res;
+    TextView restrau_name,restrau_loc,restrau_minamnt;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ownerMenuViewModel =
                 new ViewModelProvider(this).get(OwnerMenuViewModel.class);
-
         binding = FragmentOwnermenuBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        app = new App(new AppConfiguration.Builder(appID).build());
+        user= UserDetail.getUser();
+        mongoClient = user.getMongoClient("mongodb-atlas");
+        mongoDatabase = mongoClient.getDatabase("zwiggy");
+        mongoCollectionOwner = mongoDatabase.getCollection("owner");
+        restrau_name= root.findViewById(R.id.restrau_name);
+        restrau_loc=root.findViewById(R.id.restrau_loc);
+        restrau_minamnt=root.findViewById(R.id.edit_min_amount);
+        addRestaurantDetails();
+
         rvOwnerMenu = root.findViewById(R.id.rvOwnerMenu);
         menuItems = new ArrayList<>();
         menuItems.add(new MenuItem("Shahi Paneer", 210, "Restaurant Special"));
@@ -80,6 +112,37 @@ public class OwnerMenuFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    }
+
+    void addRestaurantDetails()
+    {
+        Document queryFilter = new Document().append("userId", UserDetail.getUid());
+        mongoCollectionOwner.findOne(queryFilter).getAsync(result->
+        {
+            if(result.isSuccess())
+            {
+                res=result.get();
+                OwnerID=res.getObjectId("_id").toString();
+                Restaurant=res.getString("Name");
+                Location=res.getString("Loc");
+                MinAmnt=res.getInteger("MinAmnt",0);
+                restrau_name.setText(Restaurant);
+                restrau_loc.setText(Location);
+                restrau_minamnt.setText(MinAmnt+"");
+
+                Log.v(LOG_TAG,"owner name found");
+            }
+            else
+            {
+                Log.v(LOG_TAG,"owner name not found");
+            }
+        });
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
