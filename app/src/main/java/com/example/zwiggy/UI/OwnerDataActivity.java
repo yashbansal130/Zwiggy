@@ -71,8 +71,7 @@ public class OwnerDataActivity extends AppCompatActivity {
                 Location=editLocation.getText().toString();
                 MinAmnt= Integer.parseInt(editMinAmtPerOrder.getText().toString());
                 findOwnerDetails();
-                Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -96,6 +95,8 @@ public class OwnerDataActivity extends AppCompatActivity {
     }
     void addOwnerDetails()
     {
+
+
         LatLng latLng = getLocationFromAddress(getApplicationContext(), Location);
         if(latLng!=null) {
             mongoCollectionOwner.insertOne(new Document("OwnerId", OwnerID).append("Name", RestaurantName)
@@ -104,8 +105,13 @@ public class OwnerDataActivity extends AppCompatActivity {
                     .append("MinAmnt", MinAmnt)).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "owner Insertion is successful");
+                    Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-                } else {
+
+                 else {
                     Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
                 }
             });
@@ -123,6 +129,7 @@ public class OwnerDataActivity extends AppCompatActivity {
             address = coder.getFromLocationName(strAddress, 5);
             if (address == null) {
                 return null;
+
             }
 
             Address location = address.get(0);

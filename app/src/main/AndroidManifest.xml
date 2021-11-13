@@ -19,6 +19,7 @@
             android:name=".UI.OwnerActivity"
             android:exported="true"
             android:label="@string/title_activity_owner">
+
         </activity>
         <activity
             android:name=".UI.OwnerDataActivity"
