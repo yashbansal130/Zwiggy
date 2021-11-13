@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Zwiggy</string>
+    <string name="title_activity_owner">OwnerActivity</string>
+    <string name="title_home">Pending Orders</string>
+    <string name="title_dashboard">Menu</string>
+    <string name="title_notifications">Accepted Orders</string>
 </resources>
