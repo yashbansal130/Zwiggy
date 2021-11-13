@@ -13,8 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.zwiggy.Adapter.ContactsAdapter;
+import com.example.zwiggy.Adapter.PendingOrderAdapter;
 import com.example.zwiggy.R;
 import com.example.zwiggy.databinding.FragmentPendingordersBinding;
 
@@ -24,6 +23,8 @@ public class PendingOrdersFragment extends Fragment {
 
     private PendingOrdersViewModel homeViewModel;
     private FragmentPendingordersBinding binding;
+    ArrayList<String> pendingOrders;
+    RecyclerView rvPendingOrders;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -40,30 +41,15 @@ public class PendingOrdersFragment extends Fragment {
             }
         });
 
-        setContentView(R.layout.fragment_pendingorders);
+        pendingOrders = new ArrayList<String>();
+        pendingOrders.add("yash bansal");
+        pendingOrders.add("Utkarsh chutiya");
+        pendingOrders.add("Mota Bhadwa");
 
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvContacts = (RecyclerView) findViewById(R.id.list_item_PendingOrders);
-
-        // Initialize contacts
-        contacts = Contact.createContactsList(20);
-        // Create adapter passing in the sample user data
-        ContactsAdapter adapter = new ContactsAdapter(contacts);
-        // Attach the adapter to the recyclerview to populate items
-        rvContacts.setAdapter(adapter);
-        // Set layout manager to position the items
-        rvContacts.setLayoutManager(new LinearLayoutManager(this));
-        // That's all!
-
-
-        final ArrayList<String> pendings = new ArrayList<String>();
-        pendings.add("paneer");
-        pendings.add("maggie");
-        pendings.add("chicken");
-        pendings.add("dal makhani");
-        pendings.add("yogi ka korma");
-        pendings.add("bansal ka achaar");
-        pendings.add("mittal ka halwa");
+        rvPendingOrders = root.findViewById(R.id.rvPendingOrders);
+        PendingOrderAdapter adapter = new PendingOrderAdapter(getContext(), pendingOrders);
+        rvPendingOrders.setAdapter(adapter);
+        rvPendingOrders.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         return root;
