@@ -89,7 +89,9 @@ public class SignupActivity extends AppCompatActivity {
                 UserDetail.setEmailId(email);
                 UserDetail.setmUid(app.currentUser().getId());
                 Log.i("EXAMPLE", "Successfully Logged In user.");
+
                 addUser.setMongo();
+
                 Toast.makeText(SignupActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                 if(UserDetail.getType()==0){
                     Intent intent = new Intent(SignupActivity.this, CustomerActivity.class);
