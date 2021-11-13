@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.OwnerUI.OwnerMenu.AddMenuItemActivity">
+
+    <EditText
+        android:id="@+id/menuItemName"
+        android:layout_width="250dp"
+        android:hint="Enter menu Item Name"
+        android:layout_height="40dp"
+        android:inputType="textEmailAddress"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:layout_width="250dp"
+        android:id="@+id/menuItemPrice"
+        android:hint="Enter menu Item Price"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"/>
+
+    <EditText
+        android:id="@+id/menuItemDiscription"
+        android:layout_width="250dp"
+        android:hint="Type Discription About Item"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:id="@+id/menuDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:text="Proceed to Add"/>
+
+</LinearLayout>
