@@ -8,11 +8,16 @@ public class UserDetail {
     private static int mtype;
     private static String muid;
     private static String mname;
-
+    private static String muserOwnerid;
     public static String getUid() {
         return muid;
     }
-
+    public static void setuserOwnerid(String userOwnerid) {
+        muserOwnerid = userOwnerid;
+    }
+    public static String getuserOwnerid() {
+        return muserOwnerid ;
+    }
     public static void setmUid(String uid) {
         muid = uid;
     }
