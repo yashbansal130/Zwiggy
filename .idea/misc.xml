@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+<<<<<<< HEAD
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_add_menu_item.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer.xml" value="0.4" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_login.xml" value="0.24583333333333332" />
@@ -20,6 +21,12 @@
         <entry key="app/src/main/res/layout/fragment_acceptedorder_list_item.xml" value="0.2601851851851852" />
         <entry key="app/src/main/res/layout/fragment_ownermenu.xml" value="0.22685185185185186" />
         <entry key="app/src/main/res/layout/ownermenu_list_item.xml" value="0.22685185185185186" />
+        <entry key="..\:/Users/yoges/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/yoges/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_owner.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yoges/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_owner_data.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yoges/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/fragment_ownermenu.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.264" />
+
       </map>
     </option>
   </component>
