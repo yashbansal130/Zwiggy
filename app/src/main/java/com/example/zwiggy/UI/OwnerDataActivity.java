@@ -95,17 +95,7 @@ public class OwnerDataActivity extends AppCompatActivity {
     }
     void addOwnerDetails()
     {
-        mongoCollectionOwner.insertOne(new Document("OwnerId", OwnerID).append("Name",RestaurantName)
-                .append("Loc",Location).append("userId",UserDetail.getUid()).append("Longitude",longitude)
-                .append("Latitude",latitude)
-                .append("MinAmnt", MinAmnt)).getAsync(result -> {
-            if (result.isSuccess()) {
-                Log.v(LOG_TAG, "owner Insertion is successful");
-                Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
-                startActivity(intent);
 
-            } else {
-                Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
 
         LatLng latLng = getLocationFromAddress(getApplicationContext(), Location);
         if(latLng!=null) {
@@ -115,8 +105,13 @@ public class OwnerDataActivity extends AppCompatActivity {
                     .append("MinAmnt", MinAmnt)).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "owner Insertion is successful");
+                    Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-                } else {
+
+                 else {
                     Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
                 }
             });
