@@ -95,8 +95,6 @@ public class OwnerDataActivity extends AppCompatActivity {
     }
     void addOwnerDetails()
     {
-
-
         LatLng latLng = getLocationFromAddress(getApplicationContext(), Location);
         if(latLng!=null) {
             mongoCollectionOwner.insertOne(new Document("OwnerId", OwnerID).append("Name", RestaurantName)
@@ -109,8 +107,6 @@ public class OwnerDataActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-
-
                  else {
                     Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
                 }
