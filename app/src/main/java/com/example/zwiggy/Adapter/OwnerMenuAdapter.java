@@ -11,15 +11,16 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Data.MenuItem;
 import com.example.zwiggy.R;
 
 import java.util.ArrayList;
 
 public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.OwnerMenuViewHolder> {
     Context mContext;
-    ArrayList<String> mMenuItems;
+    ArrayList<MenuItem> mMenuItems;
 
-    public OwnerMenuAdapter(Context context, ArrayList<String> menuItems) {
+    public OwnerMenuAdapter(Context context, ArrayList<MenuItem> menuItems) {
         mContext = context;
         mMenuItems = menuItems;
     }
@@ -30,15 +31,17 @@ public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.Owne
         LayoutInflater inflater = LayoutInflater.from(context);
         View contactView = inflater.inflate(R.layout.ownermenu_list_item, parent, false);
         OwnerMenuAdapter.OwnerMenuViewHolder viewHolder = new OwnerMenuViewHolder(contactView);
-        Log.i("data", mMenuItems.toString());
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull OwnerMenuViewHolder holder, int position) {
-        String name = mMenuItems.get(position);
-        TextView textView = holder.itemName;
-        textView.setText(name);
+         MenuItem item = mMenuItems.get(position);
+         //Log.i("data", item.getDisc());
+        TextView name = holder.itemName;
+        name.setText(item.getName());
+        holder.itemPrice.setText("Rs "+Integer.toString(item.getPrice()));
+        holder.itemDics.setText(item.getDisc());
     }
 
 
@@ -50,11 +53,15 @@ public class OwnerMenuAdapter extends RecyclerView.Adapter<OwnerMenuAdapter.Owne
 
     public class OwnerMenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView itemName;
+        public TextView itemDics;
+        public TextView itemPrice;
 
         public OwnerMenuViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             itemName = itemView.findViewById(R.id.owner_menu_item_name);
+            itemDics=itemView.findViewById(R.id.menu_item_disc);
+            itemPrice=itemView.findViewById(R.id.menu_item_price);
         }
 
         @Override

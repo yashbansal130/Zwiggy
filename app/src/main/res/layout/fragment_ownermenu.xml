@@ -75,9 +75,10 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
@@ -88,16 +89,13 @@
             android:layout_height="match_parent"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/add_menu_item_button"
             android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="16dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/ic_baseline_add_24"
-            app:layout_constraintEnd_toEndOf="@+id/rvOwnerMenu"
-            tools:layout_editor_absoluteY="26dp" />
+            android:layout_height="100dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginLeft="310dp"
+            android:src="@drawable/ic_baseline_add_24" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

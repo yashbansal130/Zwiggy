@@ -21,8 +21,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zwiggy.Adapter.OwnerMenuAdapter;
+import com.example.zwiggy.Data.MenuItem;
 import com.example.zwiggy.R;
 import com.example.zwiggy.databinding.FragmentOwnermenuBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -31,7 +34,7 @@ public class OwnerMenuFragment extends Fragment {
     private OwnerMenuViewModel ownerMenuViewModel;
     private FragmentOwnermenuBinding binding;
     RecyclerView rvOwnerMenu;
-    ArrayList<String> menuItems;
+    ArrayList<MenuItem> menuItems;
     EditText minAmountEdit;
     ImageView minAmountButton;
 
@@ -44,9 +47,19 @@ public class OwnerMenuFragment extends Fragment {
         View root = binding.getRoot();
         rvOwnerMenu = root.findViewById(R.id.rvOwnerMenu);
         menuItems = new ArrayList<>();
-        menuItems.add("Kadai Paneer");
-        menuItems.add("SHahi Paneer");
-        menuItems.add("Malai Kofta");
+        menuItems.add(new MenuItem("Shahi Paneer", 210, "Restaurant Special"));
+        menuItems.add(new MenuItem("Kadai Paneer", 230, "Spicy as Hell"));
+        menuItems.add(new MenuItem("Malai Kofta", 225, "Sweet And Soft"));
+
+        FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.add_menu_item_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
+
 
         OwnerMenuAdapter adapter=new OwnerMenuAdapter(getContext(), menuItems);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
