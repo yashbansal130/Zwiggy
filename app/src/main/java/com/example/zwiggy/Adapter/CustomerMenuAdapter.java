@@ -42,23 +42,23 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapte
         MenuItem restaurant_menu_list =mCustomerMenu.get(position);
         restaurant_menu_list.setQuantity(0);
         holder.customerMenuName.setText(restaurant_menu_list.getName());
-        holder.customerMenuPrice.setText(restaurant_menu_list.getPrice());
-        holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+        holder.customerMenuPrice.setText("Rs."+Integer.toString(restaurant_menu_list.getPrice()) );
+        holder.customerMenuQuantity.setText(Integer.toString(restaurant_menu_list.getQuantity()));
         holder.customerMenuDisc.setText(restaurant_menu_list.getDisc());
 
         holder.plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 restaurant_menu_list.setQuantity(restaurant_menu_list.getQuantity()+1);
-                holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+                holder.customerMenuQuantity.setText(Integer.toString( restaurant_menu_list.getQuantity()));
             }
         });
         holder.minus.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(restaurant_menu_list.getQuantity()>0){
+                if(restaurant_menu_list.getQuantity()>0 && restaurant_menu_list.getQuantity()<6){
                     restaurant_menu_list.setQuantity(restaurant_menu_list.getQuantity()-1);
-                    holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+                    holder.customerMenuQuantity.setText(Integer.toString(restaurant_menu_list.getQuantity()) );
                 }
             }
         });

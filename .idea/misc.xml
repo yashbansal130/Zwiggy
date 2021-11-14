@@ -7,9 +7,12 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_create_new_order.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_create_new_order_list_items.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer.xml" value="0.4" />
+<<<<<<< HEAD
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer_menu.xml" value="0.536" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer_menu_list_item.xml" value="0.536" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer_menu_ractivity.xml" value="0.24583333333333332" />
+=======
+>>>>>>> 48b8694aa71c48d9768b811d99e03b3268c52010
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer_restaurant_list_iems.xml" value="0.25" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_login.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_main.xml" value="0.24583333333333332" />
@@ -22,7 +25,12 @@
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/fragment_ownermenu.xml" value="0.24583333333333332" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/fragment_pendingorders.xml" value="0.20885416666666667" />
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/fragment_pendingorders_list_item.xml" value="0.20885416666666667" />
+<<<<<<< HEAD
         <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/ownermenu_list_item.xml" value="0.264" />
+=======
+        <entry key="..\:/Users/hp/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/ownermenu_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/yoges/AndroidStudioProjects/Zwiggy/app/src/main/res/layout/activity_customer_menu_list_item.xml" value="0.11979166666666667" />
+>>>>>>> 48b8694aa71c48d9768b811d99e03b3268c52010
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.264" />
       </map>
     </option>
