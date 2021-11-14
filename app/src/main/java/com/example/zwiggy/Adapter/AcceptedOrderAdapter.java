@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zwiggy.Data.PendingOrder;
+import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
 import com.example.zwiggy.UI.CreateNewOrder;
 
@@ -42,7 +43,7 @@ public class AcceptedOrderAdapter extends RecyclerView.Adapter<AcceptedOrderAdap
     public void onBindViewHolder(@NonNull AcceptedOrdersViewHolder holder, int position) {
         PendingOrder pending =mAccepted.get(position);
         holder.pendingOrderId.setText(pending.getOrderId());
-        holder.pendingBill.setText(Integer.toString(pending.getBill()));
+        holder.pendingBill.setText("Rs."+Integer.toString(pending.getBill()));
         holder.pendingCustomerName.setText(pending.getCustomerName());
     }
 
@@ -66,6 +67,9 @@ public class AcceptedOrderAdapter extends RecyclerView.Adapter<AcceptedOrderAdap
 
         @Override
         public void onClick(View view) {
+            int pos=getAdapterPosition();
+            UserDetail.setMorderId(mAccepted.get(pos).getOrderId());
+            UserDetail.setIntentStatus(2);
             Intent intent = new Intent(mContext, CreateNewOrder.class);
             mContext.startActivity(intent);
         }

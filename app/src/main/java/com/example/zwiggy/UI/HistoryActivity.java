@@ -79,7 +79,7 @@ public class HistoryActivity extends AppCompatActivity {
                         CusId=curDoc.getString("CusId");
                         state=curDoc.getInteger("State");
                         total=curDoc.getInteger("Total");
-                        if(state>=0) {
+                        if(state>0) {
                             history.add(new OrderHistory(OrderId, Resname, state, total));
                         }
                         Log.i(LOG_TAG,"history orders found ");
