@@ -60,9 +60,9 @@ public class AcceptedOrderAdapter extends RecyclerView.Adapter<AcceptedOrderAdap
         public AcceptedOrdersViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            pendingOrderId = (TextView) itemView.findViewById(R.id.pending_order_id);
-            pendingCustomerName = (TextView) itemView.findViewById(R.id.customer_name_pending);
-            pendingBill = (TextView) itemView.findViewById(R.id.pending_bill);
+            pendingOrderId = (TextView) itemView.findViewById(R.id.accepted_order_id);
+            pendingCustomerName = (TextView) itemView.findViewById(R.id.customer_name_accepted);
+            pendingBill = (TextView) itemView.findViewById(R.id.accepted_bill);
         }
 
         @Override
