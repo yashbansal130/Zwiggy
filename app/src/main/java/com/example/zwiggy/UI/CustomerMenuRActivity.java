@@ -85,7 +85,9 @@ public class CustomerMenuRActivity extends AppCompatActivity {
     View.OnClickListener createNewOrderClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            for(int i=0;i<ownerMenu.size();i++){
+                Log.i("info", ownerMenu.get(i).getName()+" "+ownerMenu.get(i).getQuantity());
+            }
         }
     };
 }

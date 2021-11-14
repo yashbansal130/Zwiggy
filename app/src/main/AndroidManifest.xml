@@ -14,43 +14,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
         <activity
-            android:name=".UI.CustomerMenuRActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="true" />
-        <activity
-            android:name=".UI.OwnerUI.OwnerMenu.AddMenuItemActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="false" />
-        <activity
-            android:name=".UI.OwnerActivity"
+            android:name=".UI.HistoryActivity"
             android:exported="true"
-            android:theme="@style/Theme.Zwiggy"
-            android:label="@string/title_activity_owner"></activity>
-        <activity
-            android:name=".UI.OwnerDataActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="true" />
-        <activity
-            android:name=".UI.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="true" />
-        <activity
-            android:name=".UI.CustomerActivity"
-            android:theme="@style/Theme.Zwiggy"
-            android:exported="true"></activity>
-        <activity
-            android:name=".UI.SignupActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="true" />
-        <activity
-            android:name=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:exported="true">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.CustomerMenuRActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".UI.OwnerUI.OwnerMenu.AddMenuItemActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".UI.OwnerActivity"
+            android:exported="true"
+            android:label="@string/title_activity_owner"
+            android:theme="@style/Theme.Zwiggy" />
+        <activity
+            android:name=".UI.OwnerDataActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".UI.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".UI.CustomerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Zwiggy" />
+        <activity
+            android:name=".UI.SignupActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+        <activity
+            android:name=".UI.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         </activity>
     </application>
 

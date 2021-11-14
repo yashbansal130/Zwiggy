@@ -233,7 +233,7 @@ public class CustomerActivity extends AppCompatActivity {
         actionbar.setTitle("Zwiggy");
     }
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menulist, menu);
+        getMenuInflater().inflate(R.menu.menulist2, menu);
         return true;
     }
 
@@ -244,6 +244,10 @@ public class CustomerActivity extends AppCompatActivity {
             App app = new App(new AppConfiguration.Builder(appID).build());
             app.currentUser().logOut();
             finish();
+        }
+        if(item.getItemId()==R.id.order_history){
+            Intent intent = new Intent(CustomerActivity.this, HistoryActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }
