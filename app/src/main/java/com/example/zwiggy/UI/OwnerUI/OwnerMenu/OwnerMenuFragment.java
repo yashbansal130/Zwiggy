@@ -113,6 +113,8 @@ public class OwnerMenuFragment extends Fragment {
 
     }
     public void getItems(){
+        itemArray.clear();
+        menuItems.clear();
         Document fqueryFilter = new Document("userId", UserDetail.getUid());
         mongoCollectionOwner.findOne(fqueryFilter).getAsync(result ->
         {
