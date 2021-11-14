@@ -4,6 +4,7 @@ public class MenuItem {
     private String name;
     private int price;
     private String disc;
+    int quantity;
 
 
 
@@ -35,5 +36,13 @@ public class MenuItem {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
