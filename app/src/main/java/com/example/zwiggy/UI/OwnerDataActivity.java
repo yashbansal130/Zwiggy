@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
@@ -47,15 +48,17 @@ public class OwnerDataActivity extends AppCompatActivity {
     String OwnerID;
     Document res;
     MongoCollection<Document> mongoCollectionUser,mongoCollectionOwner;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner_data);
 
-        editRestaurantName = (EditText)findViewById(R.id.ownerRestaurantName);
-        editLocation = (EditText)findViewById(R.id.ownerRestaurantLocation);
-        editMinAmtPerOrder = (EditText)findViewById(R.id.ownerMinAmountPerOrder);
-
+        editRestaurantName = findViewById(R.id.ownerRestaurantName);
+        editLocation = findViewById(R.id.ownerRestaurantLocation);
+        editMinAmtPerOrder =findViewById(R.id.ownerMinAmountPerOrder);
+        progressBar = findViewById(R.id.progressOwnerDetails);
+        progressBar.setVisibility(View.GONE);
 
         done = findViewById(R.id.ownerDone);
 
@@ -69,6 +72,8 @@ public class OwnerDataActivity extends AppCompatActivity {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                done.setEnabled(false);
                 RestaurantName=editRestaurantName.getText().toString();
                 Location=editLocation.getText().toString();
                 MinAmnt= Integer.parseInt(editMinAmtPerOrder.getText().toString());
@@ -107,11 +112,14 @@ public class OwnerDataActivity extends AppCompatActivity {
                     .append("MinAmnt", MinAmnt)).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "owner Insertion is successful");
+                    done.setEnabled(true);
                     Intent intent = new Intent(OwnerDataActivity.this, OwnerActivity.class);
                     startActivity(intent);
                     finish();
                 }
                  else {
+                     progressBar.setVisibility(View.GONE);
+                     done.setEnabled(true);
                     Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
                 }
             });

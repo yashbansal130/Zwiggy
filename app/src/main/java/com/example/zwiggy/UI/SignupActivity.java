@@ -68,6 +68,7 @@ public class SignupActivity extends AppCompatActivity {
             name=editSignUpName.getText().toString();
             if(email!=null && password!=null && name!=null) {
                 progressBar.setVisibility(View.VISIBLE);
+                signUpButton.setEnabled(false);
                 app.getEmailPassword().registerUserAsync(email, password, it -> {
                     if (it.isSuccess()) {
                         Log.i("EXAMPLE", "Successfully registered user.");
@@ -75,6 +76,7 @@ public class SignupActivity extends AppCompatActivity {
                     } else {
                         Log.e("EXAMPLE", "Failed to register user: " + it.getError().getErrorMessage());
                         progressBar.setVisibility(View.GONE);
+                        signUpButton.setEnabled(true);
                     }
                 });
             }
