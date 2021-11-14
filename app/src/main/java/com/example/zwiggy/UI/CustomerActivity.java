@@ -1,7 +1,9 @@
 package com.example.zwiggy.UI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,11 +15,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
-//import android.location.LocationRequest;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.zwiggy.Adapter.CustomerAdapter;
@@ -34,6 +37,9 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+
 public class CustomerActivity extends AppCompatActivity {
 
     FusedLocationProviderClient mFusedLocationClient;
@@ -49,6 +55,7 @@ public class CustomerActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
+        configureToolbar();
         getDistance(0,0,0,0);
         restaurants = new ArrayList<Restaurant>();
 //        restaurants.add("Amar Punjabi");
@@ -152,5 +159,27 @@ public class CustomerActivity extends AppCompatActivity {
         endPoint.setLatitude(l3);
         endPoint.setLongitude(l4);
         return  startPoint.distanceTo(endPoint);
+    }
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.customer_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("Zwiggy");
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menulist, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.logout){
+            String appID = "hackit-qyzey";
+            App app = new App(new AppConfiguration.Builder(appID).build());
+            app.currentUser().logOut();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
