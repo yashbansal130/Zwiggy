@@ -31,7 +31,7 @@ public class CustomerMenuRActivity extends AppCompatActivity {
 
     App app;
     User user;
-    String appID = "hackit-qyzey",OwnerID;
+    String appID = "hackit-qyzey";
     String LOG_TAG = CustomerMenuRActivity.class.getSimpleName();
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
@@ -52,7 +52,6 @@ public class CustomerMenuRActivity extends AppCompatActivity {
         mongoDatabase = mongoClient.getDatabase("zwiggy");
         mongoCollectionOwner = mongoDatabase.getCollection("owner");
         mongoCollectionitem = mongoDatabase.getCollection("items");
-
         ownerMenu = new ArrayList<MenuItem>();
 
         rvOwnerMenu = findViewById(R.id.rvCustomerMenu);
