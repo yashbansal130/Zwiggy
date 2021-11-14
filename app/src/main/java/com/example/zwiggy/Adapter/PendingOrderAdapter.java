@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zwiggy.Data.PendingOrder;
+import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
 import com.example.zwiggy.UI.CreateNewOrder;
 
@@ -31,7 +32,6 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
     public PendingOrdersViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-
         View contactView = inflater.inflate(R.layout.fragment_pendingorders_list_item, parent, false);
         PendingOrdersViewHolder viewHolder = new PendingOrdersViewHolder(contactView);
         return viewHolder;
@@ -43,7 +43,7 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
     public void onBindViewHolder(@NonNull PendingOrdersViewHolder holder, int position) {
         PendingOrder pending =mPendings.get(position);
         holder.pendingOrderId.setText(pending.getOrderId());
-        holder.pendingBill.setText(Integer.toString(pending.getBill()));
+        holder.pendingBill.setText("Rs."+Integer.toString(pending.getBill()));
         holder.pendingCustomerName.setText(pending.getCustomerName());
 
     }
@@ -68,6 +68,9 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
 
         @Override
         public void onClick(View view) {
+            int pos=getAdapterPosition();
+            UserDetail.setMorderId(mPendings.get(pos).getOrderId());
+            UserDetail.setIntentStatus(1);
             Intent intent = new Intent(mContext, CreateNewOrder.class);
             mContext.startActivity(intent);
         }
