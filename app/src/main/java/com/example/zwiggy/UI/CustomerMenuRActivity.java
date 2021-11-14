@@ -51,23 +51,20 @@ public class CustomerMenuRActivity extends AppCompatActivity {
         mongoCollectionitem = mongoDatabase.getCollection("items");
 
         ownerMenu = new ArrayList<MenuItem>();
-//        ownerMenu.add("Dish1");
-//        ownerMenu.add("Dish2");
-//        ownerMenu.add("Dish3");
 
         rvOwnerMenu = findViewById(R.id.rvCustomerMenu);
+        getItems();
 
 
     }
     public void getItems(){
-        itemArray.clear();
-        ownerMenu.clear();
         Document fqueryFilter = new Document("OwnerId", UserDetail.getcusresId());
         mongoCollectionOwner.findOne(fqueryFilter).getAsync(result ->
         {
             if (result.isSuccess()) {
                 Document fres = result.get();
                 itemArray = (ArrayList<Document>) fres.get("Menu");
+                Log.i("data",Integer.toString( itemArray.size()));
                 for (int i = 0; i < itemArray.size(); i++)
                 {
                     ownerMenu.add(new MenuItem(itemArray.get(i).getString("Name"),

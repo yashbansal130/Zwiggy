@@ -77,7 +77,6 @@ public class CustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-
         app = new App(new AppConfiguration.Builder(appID).build());
         user = UserDetail.getUser();
         mongoClient = user.getMongoClient("mongodb-atlas");
@@ -86,14 +85,9 @@ public class CustomerActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
-
         Log.i("location 1 ",customerLat+""+customerLong);
-
-
         configureToolbar();
-
         restaurants = new ArrayList<Restaurant>();
-
         Document queryFilter = new Document();
 //        itemArray = new ArrayList<Restaurant>();
         RealmResultTask<MongoCursor<Document>> findTask = mongoCollectionOwner.find(queryFilter).iterator();

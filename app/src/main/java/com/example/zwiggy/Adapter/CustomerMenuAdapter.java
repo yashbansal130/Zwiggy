@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,8 +40,28 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapte
     @Override
     public void onBindViewHolder(@NonNull CustomerMenuAdapterViewHolder holder, int position) {
         MenuItem restaurant_menu_list =mCustomerMenu.get(position);
-        TextView textView = holder.customerMenuItem;
-        textView.setText(restaurant_menu_list);
+        restaurant_menu_list.setQuantity(0);
+        holder.customerMenuName.setText(restaurant_menu_list.getName());
+        holder.customerMenuPrice.setText(restaurant_menu_list.getPrice());
+        holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+        holder.customerMenuDisc.setText(restaurant_menu_list.getDisc());
+
+        holder.plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restaurant_menu_list.setQuantity(restaurant_menu_list.getQuantity()+1);
+                holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+            }
+        });
+        holder.minus.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(restaurant_menu_list.getQuantity()>0){
+                    restaurant_menu_list.setQuantity(restaurant_menu_list.getQuantity()-1);
+                    holder.customerMenuQuantity.setText(restaurant_menu_list.getQuantity());
+                }
+            }
+        });
     }
 
     @Override
@@ -49,11 +70,21 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapte
     }
 
     public class CustomerMenuAdapterViewHolder extends RecyclerView.ViewHolder  {
-        public TextView customerMenuItem;
+        public TextView customerMenuName;
+        public TextView customerMenuPrice;
+        public TextView customerMenuDisc;
+        public TextView customerMenuQuantity;
+        public Button plus;
+        public Button minus;
 
         public CustomerMenuAdapterViewHolder(View itemView) {
             super(itemView);
-            customerMenuItem = (TextView) itemView.findViewById(R.id.customerMenuItem);
+            customerMenuName = itemView.findViewById(R.id.customer_menu_name);
+            customerMenuDisc = itemView.findViewById(R.id.customer_menu_disc);
+            customerMenuPrice = itemView.findViewById(R.id.customer_menu_price);
+            minus = itemView.findViewById(R.id.minus);
+            plus = itemView.findViewById(R.id.plus);
+            customerMenuQuantity = itemView.findViewById(R.id.quantity);
         }
     }
 }
