@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Data.Restaurant;
 import com.example.zwiggy.R;
 
 import java.util.ArrayList;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.CustomerAdapterViewHolder> {
 
-    ArrayList<String> mResturants;
+    ArrayList<Restaurant> mResturants;
     Context mContext;
 
-    public CustomerAdapter(Context context, ArrayList<String> resturantsList){
+    public CustomerAdapter(Context context, ArrayList<Restaurant> resturantsList){
         mContext = context;
         mResturants = resturantsList;
     }
@@ -37,9 +38,9 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull CustomerAdapterViewHolder holder, int position) {
-        String restaurant_list =mResturants.get(position);
-        TextView textView = holder.restaurant;
-        textView.setText(restaurant_list);
+        Restaurant restaurant = mResturants.get(position);
+        holder.restaurantName.setText(restaurant.getName());
+        holder.restaurantLocation.setText(restaurant.getLocation());
     }
 
     @Override
@@ -48,11 +49,13 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
     }
 
     public class CustomerAdapterViewHolder extends RecyclerView.ViewHolder {
-        public TextView restaurant;
+        public TextView restaurantName;
+        public TextView restaurantLocation;
 
         public CustomerAdapterViewHolder(View itemView) {
             super(itemView);
-            restaurant = (TextView) itemView.findViewById(R.id.list_reataurant_items);
+            restaurantName = itemView.findViewById(R.id.restaurant_name);
+            restaurantLocation = itemView.findViewById(R.id.restaurant_location);
         }
     }
 }

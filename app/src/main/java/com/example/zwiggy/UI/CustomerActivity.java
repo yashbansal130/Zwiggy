@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.zwiggy.Adapter.CustomerAdapter;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
+import com.example.zwiggy.Data.Restaurant;
 import com.example.zwiggy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -36,7 +37,7 @@ public class CustomerActivity extends AppCompatActivity {
 
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
-    ArrayList<String> restaurants;
+    ArrayList<Restaurant> restaurants;
     RecyclerView rvRestaurants;
     double customerLat, customerLong;
 
@@ -48,10 +49,10 @@ public class CustomerActivity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
         getDistance(0,0,0,0);
-        restaurants = new ArrayList<String>();
-        restaurants.add("Amar Punjabi");
-        restaurants.add("roma.in");
-        restaurants.add("satkar");
+        restaurants = new ArrayList<Restaurant>();
+//        restaurants.add("Amar Punjabi");
+//        restaurants.add("roma.in");
+//        restaurants.add("satkar");
 
         rvRestaurants = findViewById(R.id.rvCustomer);
         CustomerAdapter adapter = new CustomerAdapter(this, restaurants);
@@ -71,6 +72,7 @@ public class CustomerActivity extends AppCompatActivity {
                         } else {
                             customerLat=location.getLatitude();
                             customerLong=location.getLongitude();
+                            Log.i("location", customerLat+" "+customerLong);
 
                         }
                     }
