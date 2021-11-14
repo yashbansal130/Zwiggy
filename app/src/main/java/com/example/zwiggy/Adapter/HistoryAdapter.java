@@ -2,6 +2,7 @@ package com.example.zwiggy.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,13 +44,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         int status=history.get(position).getStatus();
         switch (status){
             case 1:holder.historyStatus.setText("Pending");
-//                    holder.historyStatus.setTextColor(Integer.parseInt("#FFA500"));
+                    holder.historyStatus.setTextColor(Color.parseColor("#FFA500"));
                     break;
             case 2:holder.historyStatus.setText("Accepted");
-//                    holder.historyStatus.setTextColor(Integer.parseInt("#FF0000"));
+                    holder.historyStatus.setTextColor(Color.parseColor("#00FF00"));
                     break;
             case 3: holder.historyStatus.setText("Rejected");
-//                    holder.historyStatus.setTextColor(Integer.parseInt("#00FF00"));
+                    holder.historyStatus.setTextColor(Color.parseColor("#FF0000"));
                     break;
             default: break;
         }
