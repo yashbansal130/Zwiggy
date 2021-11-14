@@ -66,15 +66,29 @@ public class AddMenuItemActivity extends AppCompatActivity {
             itemName= editMenuItemName.getText().toString();
             itemDesc= editMenuItemDiscription.getText().toString();
             itemPrice=Integer.parseInt(editMenuItemPrice.getText().toString());
-
-            mongoCollectionitem.insertOne(new Document("OwnerId", UserDetail.getuserOwnerid()).append("Name", itemName)
-                    .append("Desc", itemDesc).append("Price", itemPrice)).getAsync(result -> {
+            Document itemDoc=new Document("OwnerId", UserDetail.getuserOwnerid()).append("Name", itemName)
+                    .append("Desc", itemDesc).append("Price", itemPrice);
+            mongoCollectionitem.insertOne(itemDoc).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "item Insertion is successful");
-                    finish();
+
                 }
                 else {
                     Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
+                }
+            });
+            Document queryFilter = new Document().append("OwnerId", UserDetail.getuserOwnerid());
+            Document updateDocument = new Document("$addToSet", new Document("Menu", itemDoc));
+            mongoCollectionOwner.updateOne(queryFilter,updateDocument).getAsync(result->
+            {
+                if(result.isSuccess())
+                {
+                    Log.v(LOG_TAG,"ITEM ADDED IN MENU OF OWNER");
+                    finish();
+                }
+                else
+                {
+                    Log.v(LOG_TAG,"FAILED TO UPDATE MENU OF OWNER: ",result.getError());
                 }
             });
         }

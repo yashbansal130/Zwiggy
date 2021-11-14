@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import org.bson.Document;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.mongodb.App;
@@ -97,12 +98,13 @@ public class OwnerDataActivity extends AppCompatActivity {
     void addOwnerDetails()
     {
 
-
+        ArrayList<Document> temp=new ArrayList<Document>();
         LatLng latLng = getLocationFromAddress(getApplicationContext(), Location);
         if(latLng!=null) {
             mongoCollectionOwner.insertOne(new Document("OwnerId", OwnerID).append("Name", RestaurantName)
                     .append("Loc", Location).append("userId", UserDetail.getUid()).append("Longitude", latLng.longitude)
                     .append("Latitude",latLng.latitude)
+                    .append("Menu",temp)
                     .append("MinAmnt", MinAmnt)).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "owner Insertion is successful");
