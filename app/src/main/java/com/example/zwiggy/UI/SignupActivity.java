@@ -16,9 +16,17 @@ import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.Data.addUser;
 import com.example.zwiggy.R;
 
+import org.bson.Document;
+
+import java.util.ArrayList;
+
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
 import io.realm.mongodb.Credentials;
+import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
 
 public class SignupActivity extends AppCompatActivity {
     EditText editSignUpName;
@@ -27,6 +35,7 @@ public class SignupActivity extends AppCompatActivity {
     Button signUpButton;
     TextView signUpToLogin;
     App app;
+    User user;
     String appID = "hackit-qyzey";
     String name, email, password;
     ProgressBar progressBar;
@@ -91,14 +100,17 @@ public class SignupActivity extends AppCompatActivity {
                 UserDetail.setEmailId(email);
                 UserDetail.setmUid(app.currentUser().getId());
                 Log.i("EXAMPLE", "Successfully Logged In user.");
+                addUser adduser=new addUser();
+                adduser.setMongo();
 
-                addUser.setMongo();
 
                 Toast.makeText(SignupActivity.this,"Login Successful", Toast.LENGTH_SHORT).show();
                 if(UserDetail.getType()==0){
                     Intent intent = new Intent(SignupActivity.this, CustomerActivity.class);
                     startActivity(intent);
                     finish();
+
+
                 }else{
                     Intent intent = new Intent(SignupActivity.this, OwnerDataActivity.class);
                     startActivity(intent);
@@ -112,4 +124,5 @@ public class SignupActivity extends AppCompatActivity {
         });
 
     }
+
 }
