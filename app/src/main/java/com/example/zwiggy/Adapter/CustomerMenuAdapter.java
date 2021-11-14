@@ -9,16 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Data.MenuItem;
 import com.example.zwiggy.R;
 
 import java.util.ArrayList;
 
 public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapter.CustomerMenuAdapterViewHolder> {
 
-    ArrayList<String> mCustomerMenu;
+    ArrayList<MenuItem> mCustomerMenu;
     Context mContext;
 
-    public CustomerMenuAdapter(Context context, ArrayList<String> customerMenu){
+    public CustomerMenuAdapter(Context context, ArrayList<com.example.zwiggy.Data.MenuItem> customerMenu){
         mContext = context;
         mCustomerMenu = customerMenu;
     }
@@ -37,7 +38,7 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapte
 
     @Override
     public void onBindViewHolder(@NonNull CustomerMenuAdapterViewHolder holder, int position) {
-        String restaurant_menu_list =mCustomerMenu.get(position);
+        MenuItem restaurant_menu_list =mCustomerMenu.get(position);
         TextView textView = holder.customerMenuItem;
         textView.setText(restaurant_menu_list);
     }

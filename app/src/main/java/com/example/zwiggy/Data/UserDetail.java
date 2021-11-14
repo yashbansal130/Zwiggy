@@ -7,10 +7,14 @@ public class UserDetail {
     private static String emailId;
     private static int mtype;
     private static String muid;
+    private static String mcusresId;
     private static String mname;
     private static String muserOwnerid;
     public static String getUid() {
         return muid;
+    }
+    public static String getcusresId() {
+        return mcusresId;
     }
     public static void setuserOwnerid(String userOwnerid) {
         muserOwnerid = userOwnerid;
@@ -21,7 +25,9 @@ public class UserDetail {
     public static void setmUid(String uid) {
         muid = uid;
     }
-
+    public static void setmcusresId(String cusresId) {
+        mcusresId = cusresId;
+    }
     public static void setUser(User user) {
         muser=user;
     }
