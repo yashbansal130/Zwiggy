@@ -3,27 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
     android:layout_marginTop="5dp"
+    android:layout_marginRight="5dp"
+    android:background="#E8E1E1"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/restaurant_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="List of Restaurants"
         android:layout_marginLeft="20dp"
+        android:text="List of Restaurants"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
     <TextView
+        android:id="@+id/restaurant_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/restaurant_location"
-        android:layout_marginTop="5dp"
-        android:text="Restaurant Location"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:textSize="18dp"/>
+        android:text="Restaurant Location"
+        android:textSize="18dp" />
 
 </LinearLayout>

@@ -19,7 +19,6 @@
         android:layout_width="250dp"
         android:id="@+id/inputLoginEmail"
         android:layout_gravity="center"
-        android:textColor="@color/white"
         android:backgroundTint="@color/black"
         android:backgroundTintMode="src_over"
         android:textColorHint="@color/black"
