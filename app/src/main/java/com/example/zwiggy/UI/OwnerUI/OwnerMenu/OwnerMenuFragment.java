@@ -1,7 +1,5 @@
 package com.example.zwiggy.UI.OwnerUI.OwnerMenu;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +16,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,14 +23,13 @@ import com.example.zwiggy.Adapter.OwnerMenuAdapter;
 import com.example.zwiggy.Data.MenuItem;
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
-import com.example.zwiggy.UI.OwnerDataActivity;
 import com.example.zwiggy.databinding.FragmentOwnermenuBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
@@ -58,9 +54,11 @@ public class OwnerMenuFragment extends Fragment {
     String LOG_TAG = OwnerMenuFragment.class.getSimpleName();
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
-    MongoCollection<Document> mongoCollectionOwner;
+    MongoCollection<Document> mongoCollectionOwner,mongoCollectionitem;
     Document res;
     TextView restrau_name,restrau_loc,restrau_minamnt;
+    int viewSet=0;
+    ArrayList<Document> itemArray;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         ownerMenuViewModel =
@@ -69,24 +67,24 @@ public class OwnerMenuFragment extends Fragment {
         View root = binding.getRoot();
 
         app = new App(new AppConfiguration.Builder(appID).build());
-        user= UserDetail.getUser();
+        user = UserDetail.getUser();
         mongoClient = user.getMongoClient("mongodb-atlas");
         mongoDatabase = mongoClient.getDatabase("zwiggy");
         mongoCollectionOwner = mongoDatabase.getCollection("owner");
-        restrau_name= root.findViewById(R.id.restrau_name);
-        restrau_loc=root.findViewById(R.id.restrau_loc);
-        restrau_minamnt=root.findViewById(R.id.edit_min_amount);
+        mongoCollectionitem = mongoDatabase.getCollection("items");
+        restrau_name = root.findViewById(R.id.restrau_name);
+        restrau_loc = root.findViewById(R.id.restrau_loc);
+        restrau_minamnt = root.findViewById(R.id.edit_min_amount);
         addRestaurantDetails();
 
         rvOwnerMenu = root.findViewById(R.id.rvOwnerMenu);
         menuItems = new ArrayList<>();
-        menuItems.add(new MenuItem("Shahi Paneer", 210, "Restaurant Special"));
-        menuItems.add(new MenuItem("Kadai Paneer", 230, "Spicy as Hell"));
-        menuItems.add(new MenuItem("Malai Kofta", 225, "Sweet And Soft"));
+//        menuItems.add(new MenuItem("Shahi Paneer", 210, "Restaurant Special"));
+//        menuItems.add(new MenuItem("Kadai Paneer", 230, "Spicy as Hell"));
+//        menuItems.add(new MenuItem("Malai Kofta", 225, "Sweet And Soft"));
+        itemArray = new ArrayList<Document>();
+        getItems();
 
-        for(int i=0;i<3;i++){
-            Log.i("info", menuItems.get(i).getDisc());
-        }
 
         FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.add_menu_item_button);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,10 +96,6 @@ public class OwnerMenuFragment extends Fragment {
         });
 
 
-        OwnerMenuAdapter adapter=new OwnerMenuAdapter(getContext(), menuItems);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
-        rvOwnerMenu.setLayoutManager(layoutManager);
-        rvOwnerMenu.setAdapter(adapter);
 
         minAmountEdit = root.findViewById(R.id.edit_min_amount);
         minAmountButton = root.findViewById(R.id.min_amount_button);
@@ -117,6 +111,28 @@ public class OwnerMenuFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+    }
+    public void getItems(){
+        Document fqueryFilter = new Document("userId", UserDetail.getUid());
+        mongoCollectionOwner.findOne(fqueryFilter).getAsync(result ->
+        {
+            if (result.isSuccess()) {
+                Document fres = result.get();
+                itemArray = (ArrayList<Document>) fres.get("Menu");
+                for (int i = 0; i < itemArray.size(); i++)
+                {
+                    menuItems.add(new MenuItem(itemArray.get(i).getString("Name"),
+                            itemArray.get(i).getInteger("Price"), itemArray.get(i).getString("Desc")));
+                }
+                OwnerMenuAdapter adapter = new OwnerMenuAdapter(getContext(), menuItems);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                rvOwnerMenu.setLayoutManager(layoutManager);
+                rvOwnerMenu.setAdapter(adapter);
+                Log.v(LOG_TAG, "restaurant found ");
+            } else {
+                Log.v(LOG_TAG, "restaurant document not found");
+            }
+        });
     }
 
     void addRestaurantDetails()
@@ -167,10 +183,16 @@ public class OwnerMenuFragment extends Fragment {
     };
 
     private void hideKeybaord(View v) {
-        InputMethodManager inputMethodManager = (InputMethodManager)getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(),0);
+        InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Service.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+
     }
 
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        menuItems.clear();
+        itemArray.clear();
+        getItems();
+    }
 }
