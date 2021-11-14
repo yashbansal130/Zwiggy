@@ -1,7 +1,9 @@
 package com.example.zwiggy.UI;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,13 +20,19 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.zwiggy.Adapter.CustomerAdapter;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
+<<<<<<< HEAD
 
 import com.example.zwiggy.Data.DocOb;
 import com.example.zwiggy.Data.UserDetail;
+=======
+import com.example.zwiggy.Data.Restaurant;
+>>>>>>> 137e6e3222395f13b4f7215c6a68b045ab82fc37
 import com.example.zwiggy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -41,18 +49,21 @@ import java.util.ArrayList;
 
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
+<<<<<<< HEAD
 import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
 import io.realm.mongodb.mongo.MongoClient;
 import io.realm.mongodb.mongo.MongoCollection;
 import io.realm.mongodb.mongo.MongoDatabase;
 import io.realm.mongodb.mongo.iterable.MongoCursor;
+=======
+>>>>>>> 137e6e3222395f13b4f7215c6a68b045ab82fc37
 
 public class CustomerActivity extends AppCompatActivity {
 
     FusedLocationProviderClient mFusedLocationClient;
     int PERMISSION_ID = 44;
-    ArrayList<String> restaurants;
+    ArrayList<Restaurant> restaurants;
     RecyclerView rvRestaurants;
     double customerLat=0, customerLong=0;
     MongoClient mongoClient;
@@ -76,12 +87,17 @@ public class CustomerActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
+
         Log.i("location 1 ",customerLat+""+customerLong);
 
-        restaurants = new ArrayList<String>();
-        restaurants.add("Amar Punjabi");
-        restaurants.add("roma.in");
-        restaurants.add("satkar");
+
+        configureToolbar();
+
+        restaurants = new ArrayList<Restaurant>();
+//        restaurants.add("Amar Punjabi");
+//        restaurants.add("roma.in");
+//        restaurants.add("satkar");
+
 
 
         Document queryFilter = new Document();
@@ -134,6 +150,7 @@ public class CustomerActivity extends AppCompatActivity {
                         } else {
                             customerLat=location.getLatitude();
                             customerLong=location.getLongitude();
+                            Log.i("location", customerLat+" "+customerLong);
 
                         }
                     }
@@ -213,5 +230,27 @@ public class CustomerActivity extends AppCompatActivity {
         endPoint.setLatitude(l3);
         endPoint.setLongitude(l4);
         return  startPoint.distanceTo(endPoint);
+    }
+    private void configureToolbar() {
+        Toolbar toolbar = findViewById(R.id.customer_toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(true);
+        actionbar.setTitle("Zwiggy");
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menulist, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.logout){
+            String appID = "hackit-qyzey";
+            App app = new App(new AppConfiguration.Builder(appID).build());
+            app.currentUser().logOut();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

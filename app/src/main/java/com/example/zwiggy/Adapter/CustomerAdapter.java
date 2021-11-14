@@ -1,6 +1,7 @@
 package com.example.zwiggy.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +10,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Data.Restaurant;
 import com.example.zwiggy.R;
+import com.example.zwiggy.UI.CustomerActivity;
+import com.example.zwiggy.UI.CustomerMenuRActivity;
 
 import java.util.ArrayList;
 
 public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.CustomerAdapterViewHolder> {
 
-    ArrayList<String> mResturants;
+    ArrayList<Restaurant> mResturants;
     Context mContext;
 
-    public CustomerAdapter(Context context, ArrayList<String> resturantsList){
+    public CustomerAdapter(Context context, ArrayList<Restaurant> resturantsList){
         mContext = context;
         mResturants = resturantsList;
     }
@@ -37,9 +41,10 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull CustomerAdapterViewHolder holder, int position) {
-        String restaurant_list =mResturants.get(position);
-        TextView textView = holder.restaurant;
-        textView.setText(restaurant_list);
+        Restaurant restaurant = mResturants.get(position);
+        holder.restaurantName.setText(restaurant.getName());
+        holder.restaurantLocation.setText(restaurant.getLocation());
+
     }
 
     @Override
@@ -47,12 +52,21 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         return mResturants.size();
     }
 
-    public class CustomerAdapterViewHolder extends RecyclerView.ViewHolder {
-        public TextView restaurant;
+    public class CustomerAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView restaurantName;
+        public TextView restaurantLocation;
 
         public CustomerAdapterViewHolder(View itemView) {
             super(itemView);
-            restaurant = (TextView) itemView.findViewById(R.id.list_reataurant_items);
+            itemView.setOnClickListener(this);
+            restaurantName = itemView.findViewById(R.id.restaurant_name);
+            restaurantLocation = itemView.findViewById(R.id.restaurant_location);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext, CustomerMenuRActivity.class);
+            mContext.startActivity(intent);
         }
     }
 }
