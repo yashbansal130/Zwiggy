@@ -3,55 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#F6EEEE"
     android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="0.7"
         android:layout_height="wrap_content"
+        android:layout_weight="0.7"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/owner_menu_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:text="Kadai Paneer"
             android:textColor="@color/black"
             android:textSize="22sp" />
 
         <TextView
-            android:layout_width="wrap_content"
             android:id="@+id/menu_item_disc"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="20dp"
             android:layout_marginLeft="10dp"
-            android:text="spicy"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:text="spicy"
+            android:textSize="20dp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="0.3"
         android:layout_height="wrap_content"
+        android:layout_weight="0.3"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/menu_item_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="153"
-            android:id="@+id/menu_item_price"
-            android:layout_marginRight="20dp"
             android:layout_gravity="right"
             android:layout_marginTop="10dp"
-            android:textSize="24dp"
-            android:textColor="@color/black"/>
+            android:layout_marginRight="20dp"
+            android:text="153"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
 
 
     </LinearLayout>
-
 
 
 </LinearLayout>
