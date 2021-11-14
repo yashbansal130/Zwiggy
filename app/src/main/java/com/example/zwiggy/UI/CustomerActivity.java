@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -21,6 +22,9 @@ import android.widget.Toast;
 
 import com.example.zwiggy.Adapter.CustomerAdapter;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
+
+import com.example.zwiggy.Data.DocOb;
+import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -30,7 +34,19 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+
+import org.bson.Document;
+
 import java.util.ArrayList;
+
+import io.realm.mongodb.App;
+import io.realm.mongodb.AppConfiguration;
+import io.realm.mongodb.RealmResultTask;
+import io.realm.mongodb.User;
+import io.realm.mongodb.mongo.MongoClient;
+import io.realm.mongodb.mongo.MongoCollection;
+import io.realm.mongodb.mongo.MongoDatabase;
+import io.realm.mongodb.mongo.iterable.MongoCursor;
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -38,20 +54,66 @@ public class CustomerActivity extends AppCompatActivity {
     int PERMISSION_ID = 44;
     ArrayList<String> restaurants;
     RecyclerView rvRestaurants;
-    double customerLat, customerLong;
-
+    double customerLat=0, customerLong=0;
+    MongoClient mongoClient;
+    MongoDatabase mongoDatabase;
+    MongoCollection<Document> mongoCollectionOwner;
+    String appID = "hackit-qyzey";
+    User user;
+    App app;
+    ArrayList<Document> itemArray;
+    String LOG_TAG=CustomerActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
 
+        app = new App(new AppConfiguration.Builder(appID).build());
+        user = UserDetail.getUser();
+        mongoClient = user.getMongoClient("mongodb-atlas");
+        mongoDatabase = mongoClient.getDatabase("zwiggy");
+        mongoCollectionOwner = mongoDatabase.getCollection("owner");
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
-        getDistance(0,0,0,0);
+        Log.i("location 1 ",customerLat+""+customerLong);
+
         restaurants = new ArrayList<String>();
         restaurants.add("Amar Punjabi");
         restaurants.add("roma.in");
         restaurants.add("satkar");
+
+
+        Document queryFilter = new Document();
+        itemArray = new ArrayList<Document>();
+        RealmResultTask<MongoCursor<Document>> findTask = mongoCollectionOwner.find(queryFilter).iterator();
+        findTask.getAsync(task ->
+        {
+            if (task.isSuccess()) {
+                MongoCursor<Document> result = task.get();
+                while (result.hasNext()) {
+                    Document curDoc = result.next();
+                    try {
+                       double resLat=0.0;
+                       double resLong=0.0;
+                       double cusLat=customerLat;
+                       double cusLong=customerLong;
+                       double dist= getDistance(resLat,resLong,cusLat,cusLong);
+                       if(dist<3000)
+                       {
+                            Log.i(LOG_TAG,"restaurant in range "+ curDoc.getString("Name"));
+                       }
+                    } catch (Exception e) {
+                        Log.v(LOG_TAG, "error in finding range rest", e);
+                    }
+                }
+                Log.v(LOG_TAG, "successfully found the restaurant in range");
+            } else {
+                Log.v(LOG_TAG, "Restaurant not found" + task.getError().toString());
+            }
+
+        });
+
 
         rvRestaurants = findViewById(R.id.rvCustomer);
         CustomerAdapter adapter = new CustomerAdapter(this, restaurants);
@@ -104,6 +166,7 @@ public class CustomerActivity extends AppCompatActivity {
             Location mLastLocation = locationResult.getLastLocation();
             customerLong=mLastLocation.getLongitude();
             customerLat=mLastLocation.getLatitude();
+
         }
     };
 
