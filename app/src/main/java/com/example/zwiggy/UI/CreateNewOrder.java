@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,6 +56,7 @@ public class CreateNewOrder extends AppCompatActivity {
     MongoDatabase mongoDatabase;
     String OwnerID;
     Document res;
+    ObjectId objectId;
     MongoCollection<Document> mongoCollectionUser,mongoCollectionOwner,mongoCollectionOrder;
     ArrayList<Document> itemArray;
     @Override
@@ -83,7 +85,7 @@ public class CreateNewOrder extends AppCompatActivity {
         rvNewOrder = findViewById(R.id.rvCreateNewOrder);
         itemArray=new ArrayList<Document>();
         Log.v(LOG_TAG,"order id before search "+UserDetail.getMorderId());
-        ObjectId objectId= new ObjectId(UserDetail.getMorderId());
+         objectId= new ObjectId(UserDetail.getMorderId());
         Document fqueryFilter = new Document("_id",objectId);
         mongoCollectionOrder.findOne(fqueryFilter).getAsync(result ->
         {
@@ -131,47 +133,100 @@ public class CreateNewOrder extends AppCompatActivity {
     }
     void setButtons(){
         switch (UserDetail.getIntentStatus()){
-            case 0:acceptOrder.setVisibility(View.GONE);
+            case 0:
+                acceptOrder.setVisibility(View.GONE);
                 rejectOrder.setVisibility(View.GONE);
                 placeOrder.setVisibility(View.VISIBLE);
                 break;
-            case 1:if(UserDetail.getType()==0) {
+            case 1:
+                placeOrder.setVisibility(View.GONE);
+                acceptOrder.setVisibility(View.VISIBLE);
+                rejectOrder.setVisibility(View.VISIBLE);
+//                acceptOrder.setVisibility(View.GONE);
+//                rejectOrder.setVisibility(View.GONE);
+//                if(UserDetail.getType()==0) {
+//                acceptOrder.setVisibility(View.GONE);
+//                rejectOrder.setVisibility(View.GONE);
+//                placeOrder.setVisibility(View.GONE);
+//            }
+//            else{
+//                acceptOrder.setVisibility(View.VISIBLE);
+//                rejectOrder.setVisibility(View.VISIBLE);
+//                placeOrder.setVisibility(View.GONE);
+//            }
+                break;
+            case 2:
+
+            case 3:
                 acceptOrder.setVisibility(View.GONE);
                 rejectOrder.setVisibility(View.GONE);
                 placeOrder.setVisibility(View.GONE);
-            }
-            else{
-                acceptOrder.setVisibility(View.VISIBLE);
-                rejectOrder.setVisibility(View.VISIBLE);
-                placeOrder.setVisibility(View.GONE);
-            }
+//                placeOrder.setVisibility(View.GONE);
                 break;
-            case 2:acceptOrder.setVisibility(View.GONE);
-                rejectOrder.setVisibility(View.GONE);
-                placeOrder.setVisibility(View.GONE);
+            default:
                 break;
-            case 3:acceptOrder.setVisibility(View.GONE);
-                rejectOrder.setVisibility(View.GONE);
-                placeOrder.setVisibility(View.GONE);
-                break;
-            default: break;
         }
     }
     View.OnClickListener acceptOrderClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Document queryFilter = new Document().append("_id",objectId);
+            Document updateDocument = new Document("$set", new Document("State", 2));
+            mongoCollectionOrder.updateOne(queryFilter,updateDocument).getAsync(result->
+            {
+                if(result.isSuccess())
+                {
+                    Toast.makeText(CreateNewOrder.this,"The order is accepted ", Toast.LENGTH_LONG).show();
+                    Log.v(LOG_TAG,"ORDER STATUS UPDATED");
+                    finish();
+                }
+                else
+                {
+                    Log.v(LOG_TAG,"FAILED TO UPDATE ORDER STATUS ",result.getError());
+                }
+            });
             finish();
         }
     };
     View.OnClickListener rejectOrderClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Document queryFilter = new Document().append("_id",objectId);
+            Document updateDocument = new Document("$set", new Document("State", 3));
+            mongoCollectionOrder.updateOne(queryFilter,updateDocument).getAsync(result->
+            {
+                if(result.isSuccess())
+                {
+                    Toast.makeText(CreateNewOrder.this,"The order has been Rejected", Toast.LENGTH_LONG).show();
+                    Log.v(LOG_TAG,"ORDER STATUS UPDATED");
+                    finish();
+                }
+                else
+                {
+                    Log.v(LOG_TAG,"FAILED TO UPDATE ORDER STATUS ",result.getError());
+                }
+            });
             finish();
         }
     };
     View.OnClickListener  placeOrderClick = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            Document queryFilter = new Document().append("_id",objectId);
+            Document updateDocument = new Document("$set", new Document("State", 1));
+            mongoCollectionOrder.updateOne(queryFilter,updateDocument).getAsync(result->
+            {
+                if(result.isSuccess())
+                {
+                    Toast.makeText(CreateNewOrder.this,"Your order is succesfully placed", Toast.LENGTH_LONG).show();
+                    Log.v(LOG_TAG,"ORDER STATUS UPDATED");
+                    finish();
+                }
+                else
+                {
+                    Log.v(LOG_TAG,"FAILED TO UPDATE ORDER STATUS ",result.getError());
+                }
+            });
             finish();
         }
     };
