@@ -85,14 +85,9 @@ public class CustomerActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
-
         Log.i("location 1 ",customerLat+""+customerLong);
-
-
         configureToolbar();
-
         restaurants = new ArrayList<Restaurant>();
-
         Document queryFilter = new Document();
 //        itemArray = new ArrayList<Restaurant>();
         RealmResultTask<MongoCursor<Document>> findTask = mongoCollectionOwner.find(queryFilter).iterator();
