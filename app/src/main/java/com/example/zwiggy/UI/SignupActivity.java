@@ -77,6 +77,7 @@ public class SignupActivity extends AppCompatActivity {
                         Log.i("EXAMPLE", "Successfully registered user.");
                         loginUser();
                     } else {
+                        Toast.makeText(getApplicationContext(), "Failed to Register, Try Again", Toast.LENGTH_SHORT).show();
                         Log.e("EXAMPLE", "Failed to register user: " + it.getError().getErrorMessage());
                         progressBar.setVisibility(View.GONE);
                         signUpButton.setEnabled(true);

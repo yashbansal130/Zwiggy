@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.zwiggy.Data.UserDetail;
 import com.example.zwiggy.R;
@@ -71,10 +72,12 @@ public class AddMenuItemActivity extends AppCompatActivity {
             mongoCollectionitem.insertOne(itemDoc).getAsync(result -> {
                 if (result.isSuccess()) {
                     Log.v(LOG_TAG, "item Insertion is successful");
+                    Toast.makeText(getApplicationContext(), "Item Successfully Inserted", Toast.LENGTH_SHORT).show();
 
                 }
                 else {
-                    Log.v(LOG_TAG, "INsertion was not successful" + result.getError().toString());
+                    Toast.makeText(getApplicationContext(), "Item Failed to Insert", Toast.LENGTH_SHORT).show();
+                    Log.v(LOG_TAG, "Insertion was not successful" + result.getError().toString());
                 }
             });
             Document queryFilter = new Document().append("OwnerId", UserDetail.getuserOwnerid());
@@ -83,11 +86,13 @@ public class AddMenuItemActivity extends AppCompatActivity {
             {
                 if(result.isSuccess())
                 {
+                    Toast.makeText(getApplicationContext(), "Item Successfully Inserted", Toast.LENGTH_SHORT).show();
                     Log.v(LOG_TAG,"ITEM ADDED IN MENU OF OWNER");
                     finish();
                 }
                 else
                 {
+                    Toast.makeText(getApplicationContext(), "Item Fialed to Insert", Toast.LENGTH_SHORT).show();
                     Log.v(LOG_TAG,"FAILED TO UPDATE MENU OF OWNER: ",result.getError());
                 }
             });
