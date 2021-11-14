@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.zwiggy.Adapter.CustomerMenuAdapter;
 import com.example.zwiggy.Adapter.OwnerMenuAdapter;
@@ -37,12 +39,13 @@ public class CustomerMenuRActivity extends AppCompatActivity {
     ArrayList<MenuItem> ownerMenu;
     RecyclerView rvOwnerMenu;
     ArrayList<Document> itemArray;
+    Button createNewOrder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_menu_ractivity);
-
-
+        createNewOrder=findViewById(R.id.create_order);
+        createNewOrder.setOnClickListener(createNewOrderClick);
         app = new App(new AppConfiguration.Builder(appID).build());
         user = UserDetail.getUser();
         mongoClient = user.getMongoClient("mongodb-atlas");
@@ -79,4 +82,11 @@ public class CustomerMenuRActivity extends AppCompatActivity {
             }
         });
     }
+
+    View.OnClickListener createNewOrderClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
 }

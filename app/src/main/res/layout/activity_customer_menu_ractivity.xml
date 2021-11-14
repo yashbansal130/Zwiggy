@@ -11,4 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <Button
+        android:id="@+id/create_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/cardview_dark_background"
+        android:elevation="@dimen/material_emphasis_disabled"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:text="Create New Order"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rvCustomerMenu"
+        app:layout_constraintEnd_toEndOf="@+id/rvCustomerMenu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
