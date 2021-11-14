@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
+import com.example.zwiggy.Data.PendingOrder;
 import com.example.zwiggy.R;
 import com.example.zwiggy.databinding.FragmentPendingordersBinding;
 
@@ -23,7 +24,7 @@ public class PendingOrdersFragment extends Fragment {
 
     private PendingOrdersViewModel homeViewModel;
     private FragmentPendingordersBinding binding;
-    ArrayList<String> pendingOrders;
+    ArrayList<PendingOrder> pendingOrders;
     RecyclerView rvPendingOrders;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,10 +42,10 @@ public class PendingOrdersFragment extends Fragment {
             }
         });
 
-        pendingOrders = new ArrayList<String>();
-        pendingOrders.add("yash bansal");
-        pendingOrders.add("Utkarsh chutiya");
-        pendingOrders.add("Mota Bhadwa");
+        pendingOrders = new ArrayList<PendingOrder>();
+//        pendingOrders.add("yash bansal");
+//        pendingOrders.add("Utkarsh chutiya");
+//        pendingOrders.add("Mota Bhadwa");
 
         rvPendingOrders = root.findViewById(R.id.rvPendingOrders);
         PendingOrderAdapter adapter = new PendingOrderAdapter(getContext(), pendingOrders);

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Data.PendingOrder;
 import com.example.zwiggy.R;
 
 import java.util.ArrayList;
@@ -16,10 +17,10 @@ import java.util.ArrayList;
 
 public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapter.PendingOrdersViewHolder> {
 
-    ArrayList<String> mPendings;
+    ArrayList<PendingOrder> mPendings;
     Context mContext;
 
-    public PendingOrderAdapter(Context context, ArrayList<String> pendings){
+    public PendingOrderAdapter(Context context, ArrayList<PendingOrder> pendings){
         mContext = context;
         mPendings = pendings;
     }
@@ -38,9 +39,10 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PendingOrdersViewHolder holder, int position) {
-        String pending =mPendings.get(position);
-        TextView textView = holder.pendingOrder;
-        textView.setText(pending);
+        PendingOrder pending =mPendings.get(position);
+        holder.pendingOrderId.setText(pending.getOrderId());
+        holder.pendingBill.setText(Integer.toString(pending.getBill()));
+        holder.pendingCustomerName.setText(pending.getCustomerName());
 
     }
 
@@ -50,11 +52,15 @@ public class PendingOrderAdapter extends RecyclerView.Adapter<PendingOrderAdapte
     }
 
     public class PendingOrdersViewHolder extends RecyclerView.ViewHolder {
-        public TextView pendingOrder;
+        public TextView pendingOrderId;
+        public TextView pendingCustomerName;
+        public TextView pendingBill;
 
         public PendingOrdersViewHolder(View itemView) {
             super(itemView);
-            pendingOrder = (TextView) itemView.findViewById(R.id.list_item_PendingOrders);
+            pendingOrderId = (TextView) itemView.findViewById(R.id.pending_order_id);
+            pendingCustomerName = (TextView) itemView.findViewById(R.id.customer_name_pending);
+            pendingBill = (TextView) itemView.findViewById(R.id.pending_bill);
         }
     }
 }

@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zwiggy.Adapter.AcceptedOrderAdapter;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
 import com.example.zwiggy.R;
 import com.example.zwiggy.databinding.FragmentAcceptedordersBinding;
@@ -50,7 +51,7 @@ public class AcceptedOrdersFragment extends Fragment {
         acceptedOrders.add("Mota1 Bhadwa");
 
         rvAcceptedOrders = root.findViewById(R.id.rvAcceptedOrders);
-        PendingOrderAdapter adapter = new PendingOrderAdapter(getContext(), acceptedOrders);
+        AcceptedOrderAdapter adapter = new AcceptedOrderAdapter(getContext(), acceptedOrders);
         rvAcceptedOrders.setAdapter(adapter);
         rvAcceptedOrders.setLayoutManager(new LinearLayoutManager(getContext()));
 

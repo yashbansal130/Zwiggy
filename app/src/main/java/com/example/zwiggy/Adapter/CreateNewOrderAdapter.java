@@ -46,7 +46,6 @@ public class CreateNewOrderAdapter extends RecyclerView.Adapter<CreateNewOrderAd
     @Override
     public void onBindViewHolder(@NonNull CreateNewOrderAdapterViewHolder holder, int position) {
 
-
     }
 
     @Override
