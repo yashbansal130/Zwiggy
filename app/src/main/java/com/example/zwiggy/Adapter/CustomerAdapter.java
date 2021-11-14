@@ -2,6 +2,7 @@ package com.example.zwiggy.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,8 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
 
         @Override
         public void onClick(View view) {
+            int pos = getAdapterPosition();
+            Log.i("pos", mResturants.get(pos).getName());
             Intent intent = new Intent(mContext, CustomerMenuRActivity.class);
             mContext.startActivity(intent);
         }

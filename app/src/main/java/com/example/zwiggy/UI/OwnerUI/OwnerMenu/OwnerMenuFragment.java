@@ -79,12 +79,7 @@ public class OwnerMenuFragment extends Fragment {
 
         rvOwnerMenu = root.findViewById(R.id.rvOwnerMenu);
         menuItems = new ArrayList<>();
-//        menuItems.add(new MenuItem("Shahi Paneer", 210, "Restaurant Special"));
-//        menuItems.add(new MenuItem("Kadai Paneer", 230, "Spicy as Hell"));
-//        menuItems.add(new MenuItem("Malai Kofta", 225, "Sweet And Soft"));
         itemArray = new ArrayList<Document>();
-        getItems();
-
 
         FloatingActionButton fab = (FloatingActionButton) root.findViewById(R.id.add_menu_item_button);
         fab.setOnClickListener(new View.OnClickListener() {
