@@ -6,14 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="80dp"
-    android:paddingTop="80dp"
+    android:paddingTop="140dp"
     tools:context=".UI.OwnerDataActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Restaurant Details"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="75dp"/>
 
     <EditText
         android:layout_width="250dp"
         android:id="@+id/ownerRestaurantName"
         android:layout_gravity="center"
-        android:hint="Enter your Restaurant's name"
+        android:hint="Enter Restaurant's name"
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="src_over"
+        android:textColorHint="@color/black"
         android:layout_height="40dp"
         android:layout_margin="10dp"/>
 
@@ -23,6 +35,9 @@
         android:layout_gravity="center"
         android:hint="Enter Restaurant's Address"
         android:layout_height="40dp"
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="src_over"
+        android:textColorHint="@color/black"
         android:layout_margin="10dp"/>
 
 
@@ -30,8 +45,11 @@
         android:layout_width="250dp"
         android:id="@+id/ownerMinAmountPerOrder"
         android:layout_gravity="center"
-        android:hint="Enter the minimum amount per bill"
+        android:hint="Enter the minimum amount per Bill"
         android:inputType="number"
+        android:backgroundTint="@color/black"
+        android:backgroundTintMode="src_over"
+        android:textColorHint="@color/black"
         android:layout_height="40dp"
         android:layout_margin="10dp"/>
 
@@ -43,7 +61,15 @@
         android:layout_gravity="center"
         android:text="DONE"
         android:textStyle="italic"
-        app:backgroundTint="#2196F3" />
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:backgroundTint="@color/cardview_dark_background" />
 
+    <ProgressBar
+        android:id="@+id/progressOwnerDetails"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

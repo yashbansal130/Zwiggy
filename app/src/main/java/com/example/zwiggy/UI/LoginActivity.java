@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
             String password = editLoginPassword.getText().toString();
             if(email!=null && password!=null){
                 progressBar.setVisibility(View.VISIBLE);
+                loginButton.setEnabled(false);
                 Credentials emailPasswordCredentials = Credentials.emailPassword(email, password);
                 app.loginAsync(emailPasswordCredentials, it -> {
                     if (it.isSuccess()) {
@@ -102,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     } else {
                         progressBar.setVisibility(View.GONE);
+                        loginButton.setEnabled(true);
                         Log.e("EXAMPLE", "Failed to Login user: " + it.getError().getErrorMessage());
                         Toast.makeText(LoginActivity.this,"Login Failed, Try Again", Toast.LENGTH_SHORT).show();
                     }
