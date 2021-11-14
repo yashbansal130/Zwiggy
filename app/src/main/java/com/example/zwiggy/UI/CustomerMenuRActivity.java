@@ -29,7 +29,7 @@ public class CustomerMenuRActivity extends AppCompatActivity {
 
     App app;
     User user;
-    String appID = "hackit-qyzey",OwnerID;
+    String appID = "hackit-qyzey";
     String LOG_TAG = CustomerMenuRActivity.class.getSimpleName();
     MongoClient mongoClient;
     MongoDatabase mongoDatabase;
@@ -41,21 +41,19 @@ public class CustomerMenuRActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_menu_ractivity);
-
-
         app = new App(new AppConfiguration.Builder(appID).build());
         user = UserDetail.getUser();
         mongoClient = user.getMongoClient("mongodb-atlas");
         mongoDatabase = mongoClient.getDatabase("zwiggy");
         mongoCollectionOwner = mongoDatabase.getCollection("owner");
         mongoCollectionitem = mongoDatabase.getCollection("items");
-
         ownerMenu = new ArrayList<MenuItem>();
 //        ownerMenu.add("Dish1");
 //        ownerMenu.add("Dish2");
 //        ownerMenu.add("Dish3");
 
         rvOwnerMenu = findViewById(R.id.rvCustomerMenu);
+        getItems();
 
 
     }

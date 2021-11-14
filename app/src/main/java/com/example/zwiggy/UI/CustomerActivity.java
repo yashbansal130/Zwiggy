@@ -77,7 +77,6 @@ public class CustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
-
         app = new App(new AppConfiguration.Builder(appID).build());
         user = UserDetail.getUser();
         mongoClient = user.getMongoClient("mongodb-atlas");
