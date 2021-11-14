@@ -26,13 +26,13 @@ import android.widget.Toast;
 
 import com.example.zwiggy.Adapter.CustomerAdapter;
 import com.example.zwiggy.Adapter.PendingOrderAdapter;
-<<<<<<< HEAD
+
 
 import com.example.zwiggy.Data.DocOb;
 import com.example.zwiggy.Data.UserDetail;
-=======
+
 import com.example.zwiggy.Data.Restaurant;
->>>>>>> 137e6e3222395f13b4f7215c6a68b045ab82fc37
+
 import com.example.zwiggy.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -49,15 +49,14 @@ import java.util.ArrayList;
 
 import io.realm.mongodb.App;
 import io.realm.mongodb.AppConfiguration;
-<<<<<<< HEAD
+
 import io.realm.mongodb.RealmResultTask;
 import io.realm.mongodb.User;
 import io.realm.mongodb.mongo.MongoClient;
 import io.realm.mongodb.mongo.MongoCollection;
 import io.realm.mongodb.mongo.MongoDatabase;
 import io.realm.mongodb.mongo.iterable.MongoCursor;
-=======
->>>>>>> 137e6e3222395f13b4f7215c6a68b045ab82fc37
+
 
 public class CustomerActivity extends AppCompatActivity {
 
@@ -72,7 +71,7 @@ public class CustomerActivity extends AppCompatActivity {
     String appID = "hackit-qyzey";
     User user;
     App app;
-    ArrayList<Document> itemArray;
+//    ArrayList<Restaurant> itemArray;
     String LOG_TAG=CustomerActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,14 +93,9 @@ public class CustomerActivity extends AppCompatActivity {
         configureToolbar();
 
         restaurants = new ArrayList<Restaurant>();
-//        restaurants.add("Amar Punjabi");
-//        restaurants.add("roma.in");
-//        restaurants.add("satkar");
-
-
 
         Document queryFilter = new Document();
-        itemArray = new ArrayList<Document>();
+//        itemArray = new ArrayList<Restaurant>();
         RealmResultTask<MongoCursor<Document>> findTask = mongoCollectionOwner.find(queryFilter).iterator();
         findTask.getAsync(task ->
         {
@@ -111,19 +105,28 @@ public class CustomerActivity extends AppCompatActivity {
                     Document curDoc = result.next();
                     try {
                         Log.i("location 1 ",customerLat+""+customerLong);
-                       double resLat=0.0;
-                       double resLong=0.0;
+                       double resLat=curDoc.getDouble("Latitude");
+                       double resLong=curDoc.getDouble("Longitude");
                        double cusLat=customerLat;
                        double cusLong=customerLong;
                        double dist= getDistance(resLat,resLong,cusLat,cusLong);
-                       if(dist<3000)
+                       if(dist<=3000.0)
                        {
-                            Log.i(LOG_TAG,"restaurant in range "+ curDoc.getString("Name"));
+                           Restaurant restaurant=new Restaurant();
+                           restaurant.setId(curDoc.getString("OwnerId"));
+                           restaurant.setLocation(curDoc.getString("Loc"));
+                           restaurant.setName(curDoc.getString("Name"));
+                           restaurants.add(restaurant);
+                           Log.i(LOG_TAG,"restaurant in range "+ curDoc.getString("Name"));
                        }
                     } catch (Exception e) {
                         Log.v(LOG_TAG, "error in finding range rest", e);
                     }
                 }
+                rvRestaurants = findViewById(R.id.rvCustomer);
+                CustomerAdapter adapter = new CustomerAdapter(this, restaurants);
+                rvRestaurants.setAdapter(adapter);
+                rvRestaurants.setLayoutManager(new LinearLayoutManager(this));
                 Log.v(LOG_TAG, "successfully found the restaurant in range");
             } else {
                 Log.v(LOG_TAG, "Restaurant not found" + task.getError().toString());
@@ -132,10 +135,7 @@ public class CustomerActivity extends AppCompatActivity {
         });
 
 
-        rvRestaurants = findViewById(R.id.rvCustomer);
-        CustomerAdapter adapter = new CustomerAdapter(this, restaurants);
-        rvRestaurants.setAdapter(adapter);
-        rvRestaurants.setLayoutManager(new LinearLayoutManager(this));
+
     }
     @SuppressLint("MissingPermission")
     private void getLastLocation() {
