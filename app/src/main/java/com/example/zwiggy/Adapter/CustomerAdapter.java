@@ -1,6 +1,7 @@
 package com.example.zwiggy.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zwiggy.Data.Restaurant;
 import com.example.zwiggy.R;
+import com.example.zwiggy.UI.CustomerActivity;
+import com.example.zwiggy.UI.CustomerMenuRActivity;
 
 import java.util.ArrayList;
 
@@ -41,6 +44,7 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         Restaurant restaurant = mResturants.get(position);
         holder.restaurantName.setText(restaurant.getName());
         holder.restaurantLocation.setText(restaurant.getLocation());
+
     }
 
     @Override
@@ -48,14 +52,21 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.Custom
         return mResturants.size();
     }
 
-    public class CustomerAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class CustomerAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView restaurantName;
         public TextView restaurantLocation;
 
         public CustomerAdapterViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
             restaurantName = itemView.findViewById(R.id.restaurant_name);
             restaurantLocation = itemView.findViewById(R.id.restaurant_location);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext, CustomerMenuRActivity.class);
+            mContext.startActivity(intent);
         }
     }
 }

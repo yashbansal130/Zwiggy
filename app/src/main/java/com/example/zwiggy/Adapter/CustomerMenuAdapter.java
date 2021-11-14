@@ -47,7 +47,7 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<CustomerMenuAdapte
         return mCustomerMenu.size();
     }
 
-    public class CustomerMenuAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class CustomerMenuAdapterViewHolder extends RecyclerView.ViewHolder  {
         public TextView customerMenuItem;
 
         public CustomerMenuAdapterViewHolder(View itemView) {
