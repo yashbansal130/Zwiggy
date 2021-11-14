@@ -94,6 +94,7 @@ public class CustomerActivity extends AppCompatActivity {
                 while (result.hasNext()) {
                     Document curDoc = result.next();
                     try {
+                        Log.i("location 1 ",customerLat+""+customerLong);
                        double resLat=0.0;
                        double resLong=0.0;
                        double cusLat=customerLat;
