@@ -38,6 +38,7 @@ public class CustomerActivity extends AppCompatActivity {
     int PERMISSION_ID = 44;
     ArrayList<String> restaurants;
     RecyclerView rvRestaurants;
+    double customerLat, customerLong;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,8 @@ public class CustomerActivity extends AppCompatActivity {
                         if (location == null) {
                             requestNewLocationData();
                         } else {
-                            Log.i("location", location.getLatitude()+" "+location.getLongitude());
+                            customerLat=location.getLatitude();
+                            customerLong=location.getLongitude();
 
                         }
                     }
@@ -100,7 +102,8 @@ public class CustomerActivity extends AppCompatActivity {
         @Override
         public void onLocationResult(LocationResult locationResult) {
             Location mLastLocation = locationResult.getLastLocation();
-            Log.i("location", mLastLocation.getLatitude()+" "+mLastLocation.getLongitude());
+            customerLong=mLastLocation.getLongitude();
+            customerLat=mLastLocation.getLatitude();
         }
     };
 
@@ -137,7 +140,7 @@ public class CustomerActivity extends AppCompatActivity {
         }
     }
 
-    void getDistance(double l1, double l2, double l3, double l4){
+    double getDistance(double l1, double l2, double l3, double l4){
         Location startPoint=new Location("locationA");
         startPoint.setLatitude(l1);
         startPoint.setLongitude(l2);
@@ -145,6 +148,6 @@ public class CustomerActivity extends AppCompatActivity {
         Location endPoint=new Location("locationA");
         endPoint.setLatitude(l3);
         endPoint.setLongitude(l4);
-        Log.i("distance", Double.toString(startPoint.distanceTo(endPoint)));
+        return  startPoint.distanceTo(endPoint);
     }
 }
