@@ -81,7 +81,7 @@ public class AcceptedOrdersFragment extends Fragment {
         mongoCollectionUser = mongoDatabase.getCollection("users");
         mongoCollectionOwner = mongoDatabase.getCollection("owner");
         mongoCollectionOrder = mongoDatabase.getCollection("orders");
-
+        rvAcceptedOrders = root.findViewById(R.id.rvAcceptedOrders);
 
         Document queryFilter = new Document().append("ResId",UserDetail.getuserOwnerid());
         RealmResultTask<MongoCursor<Document>> findTask = mongoCollectionOrder.find(queryFilter).iterator();
@@ -109,7 +109,7 @@ public class AcceptedOrdersFragment extends Fragment {
                         Log.v(LOG_TAG, "error in finding range rest", e);
                     }
                 }
-                rvAcceptedOrders = root.findViewById(R.id.rvAcceptedOrders);
+
                 AcceptedOrderAdapter adapter = new AcceptedOrderAdapter(getContext(), acceptedOrders);
                 rvAcceptedOrders.setAdapter(adapter);
                 rvAcceptedOrders.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -120,10 +120,7 @@ public class AcceptedOrdersFragment extends Fragment {
 
         });
 
-        rvAcceptedOrders = root.findViewById(R.id.rvAcceptedOrders);
-        AcceptedOrderAdapter adapter = new AcceptedOrderAdapter(getContext(), acceptedOrders);
-        rvAcceptedOrders.setAdapter(adapter);
-        rvAcceptedOrders.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return root;
     }
 
